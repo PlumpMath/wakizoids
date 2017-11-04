@@ -29,5 +29,3 @@ func _fixed_process(delta):
 	if (pos.y > size.y):
 		pos.y = 1
 	set_pos(pos)
-	
-		
