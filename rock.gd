@@ -1,11 +1,13 @@
 extends RigidBody2D
 
+const ACCELERATION = 20
+
 var size
 
 func _ready():
 	size = get_viewport().get_rect().size
 	var a = randf() * 360.0
-	apply_impulse(Vector2(), Vector2(0, -20).rotated(deg2rad(a)))
+	apply_impulse(Vector2(), Vector2(0, -ACCELERATION).rotated(deg2rad(a)))
 	set_fixed_process(true)
 	
 func _fixed_process(delta):
