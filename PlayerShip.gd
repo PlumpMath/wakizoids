@@ -37,8 +37,8 @@ func _fixed_process(delta):
 	set_pos(pos)
 
 func createFiring():
-	var pos = firingPosition.get_pos()
+	var pos = firingPosition.get_global_pos()
 	var bulletResource = load("res://bullet.tscn")
 	var bullet = bulletResource.instance()
 	bullet.apply_impulse(Vector2(), Vector2(0, -BULLET_ACCELERATION).rotated(get_rot()))
-	add_child(bullet)
+	get_parent().add_child(bullet)
