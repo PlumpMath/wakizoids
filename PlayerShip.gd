@@ -8,6 +8,7 @@ var size
 var lastFired = 0
 
 onready var firingPosition = get_node("firingPosition")
+onready var engine = get_node("engineParticles")
 
 func _ready():
 	size = get_viewport().get_rect().size
@@ -22,6 +23,9 @@ func _fixed_process(delta):
 	
 	if (Input.is_action_pressed("ui_thrust")):
 		apply_impulse(Vector2(), Vector2(0, -ACCELERATION).rotated(get_rot()))
+		engine.set_emitting(true)
+	else:
+		engine.set_emitting(false)
 		
 	if (Input.is_action_pressed("ui_fire")):
 		createFiring()

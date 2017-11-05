@@ -12,7 +12,13 @@ func createRocks():
 	createRock("res://rock1.tscn", 0, 0)
 	createRock("res://rock2.tscn", 0, 600)
 	createRock("res://rock3.tscn", 1000, 0)
-	# createRock("res://rock4.tscn", 1000, 600)
+	createRock("res://rock4.tscn", 1000, 600)
+	createRock("res://rock1.tscn", -1000, -1000)
+	createRock("res://rock2.tscn", 1000, 1600)
+	createRock("res://rock3.tscn", 2000, 1000)
+	createRock("res://rock4.tscn", 2000, 1600)
+	createRock("res://rock5.tscn", -16000, 0)
+	createRock("res://rock6.tscn", 16000, 0)
 
 func createRock(name, x, y):
 	var rock = load(name)
