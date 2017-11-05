@@ -2,7 +2,7 @@ extends RigidBody2D
 
 const ROTATE_SPEED = 250
 const ACCELERATION = 5
-const BULLET_ACCELERATION = 100
+const BULLET_ACCELERATION = 400
 
 var size
 
@@ -40,5 +40,6 @@ func createFiring():
 	var pos = firingPosition.get_global_pos()
 	var bulletResource = load("res://bullet.tscn")
 	var bullet = bulletResource.instance()
+	bullet.set_pos(pos)
 	bullet.apply_impulse(Vector2(), Vector2(0, -BULLET_ACCELERATION).rotated(get_rot()))
 	get_parent().add_child(bullet)
