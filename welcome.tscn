@@ -43,10 +43,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1010.0
-margin/bottom = 586.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 1017.0
+margin/bottom = 593.0
 
 [node name="Label" type="Label" parent="Panel"]
 
