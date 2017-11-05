@@ -24,6 +24,6 @@ func createRock(name, x, y):
 func _fixed_process(delta):
 	var playerPos = player.get_pos()
 	for rock in rocks:
-		var dist = rock.distance_to(playerPos)
+		var dist = rock.get_pos().distance_to(playerPos)
 		if (dist > 1000):
-			rock.set_pos(playerPos.x + randi() * 400 - 200, playerPos.y + randi() * 400 - 200)
+			rock.set_pos(Vector2(playerPos.x + randi() * 400 - 200, playerPos.y + randi() * 400 - 200))
