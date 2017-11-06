@@ -11,4 +11,4 @@ func _ready():
 
 
 func _onStart():
-	get_tree().change_scene("res://main.tscn")
+	get_tree().change_scene("res://ChooseShip.tscn")

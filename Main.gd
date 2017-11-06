@@ -1,10 +1,13 @@
 extends Node2D
 
-onready var player = get_node("PlayerShip")
+onready var global = get_node("/root/global")
+var player
 var rocks = Array()
 
 func _ready():
 	randomize()
+	player = global.getPlayerShip()
+	add_child(player)
 	createRocks()
 	set_fixed_process(true)
 
