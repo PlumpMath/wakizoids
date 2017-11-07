@@ -2,7 +2,6 @@ extends Node2D
 
 onready var global = get_node("/root/global")
 var player
-var rocks = Array()
 
 func _ready():
 	randomize()
@@ -10,6 +9,7 @@ func _ready():
 	player.set_pos(Vector2(512, 300))
 	add_child(player)
 	createRocks()
+	createShips()
 	set_fixed_process(true)
 
 func createRocks():
@@ -23,17 +23,24 @@ func createRocks():
 	createRock("res://rock4.tscn", 2000, 1600)
 	createRock("res://rock5.tscn", -16000, 0)
 	createRock("res://rock6.tscn", 16000, 0)
+	
+func createShips():
+	for i in range(4):
+		createBoxShip("res://boxship.tscn")
 
 func createRock(name, x, y):
 	var rock = load(name)
 	var node = rock.instance()
 	node.set_pos(Vector2(x + randi() % 200, y + randi() % 200))
-	rocks.append(node)
+	node.add_to_group("rocks")
+	add_child(node)
+	
+func createBoxShip(name):
+	var ship = load(name)
+	var node = ship.instance()
+	node.set_pos(Vector2(randi() * 65536 - 32768, randi() * 65536 - 32768))
+	node.add_to_group("ships")
 	add_child(node)
 	
 func _fixed_process(delta):
-	var playerPos = player.get_pos()
-	for rock in rocks:
-		var dist = rock.get_pos().distance_to(playerPos)
-		if (dist > 1000):
-			rock.set_pos(Vector2(playerPos.x + randi() * 400 - 200, playerPos.y + randi() * 400 - 200))
+	pass

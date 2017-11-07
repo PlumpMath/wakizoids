@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://starfield.png" type="Texture" id=2]
 [ext_resource path="res://font/SF Atarian System.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://tracking.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -44,5 +45,12 @@ text = "Score: 0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="tracking" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+margin/left = 448.0
+margin/top = 432.0
+margin/right = 640.0
+margin/bottom = 592.0
 
 
