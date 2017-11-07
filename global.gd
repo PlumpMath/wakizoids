@@ -13,14 +13,14 @@ func setShipType(type):
 		var ship = load("res://RedPlayerShip.tscn")
 		PlayerShip = ship.instance()
 	elif (type == 2):
-		var ship = load("res://greenship.tscn")
+		var ship = load("res://GreenPlayerShip.tscn")
 		PlayerShip = ship.instance()
 	elif (type == 3):
-		var ship = load("res://blueship.tscn")
+		var ship = load("res://BluePlayerShip.tscn")
 		PlayerShip = ship.instance()
 	elif (type == 4):
-		var ship = load("res://yellowship.tscn")
+		var ship = load("res://YellowPlayerShip.tscn")
 		PlayerShip = ship.instance()
 	elif (type == 5):
-		var ship = load("res://purpleship.tscn")
+		var ship = load("res://PurplePlayerShip.tscn")
 		PlayerShip = ship.instance()

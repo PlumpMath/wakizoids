@@ -7,6 +7,7 @@ var rocks = Array()
 func _ready():
 	randomize()
 	player = global.getPlayerShip()
+	player.set_pos(Vector2(512, 300))
 	add_child(player)
 	createRocks()
 	set_fixed_process(true)
