@@ -2,9 +2,10 @@ extends Panel
 
 const TRACKING_WIDTH = 192
 const TRACKING_HEIGHT = 160
-const TRACKING_FULL_WIDTH = 2000.0
-const TRACKING_FULL_WIDTH2 = TRACKING_FULL_WIDTH / 2.0
-const TRACKING_RATIO = TRACKING_WIDTH / TRACKING_FULL_WIDTH
+
+var trackingRange = 10000.0
+var trackingRange2 = trackingRange / 2.0
+var trackingRatio = TRACKING_WIDTH / trackingRange
 
 onready var global = get_node("/root/global")
 
@@ -27,21 +28,21 @@ func _draw():
 	for rock in rocks:
 		var pos = rock.get_pos()
 		var dist = playerPos.distance_to(pos)
-		if dist < TRACKING_FULL_WIDTH2:
-			var x = (pos.x - playerPos.x) * TRACKING_RATIO + TRACKING_WIDTH / 2
-			var y = (pos.y - playerPos.y) * TRACKING_RATIO + TRACKING_HEIGHT / 2
+		if dist < trackingRange2:
+			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
+			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
 			rect = Rect2(x - 1, y - 1, 3, 3)
-			colour = Color(128, 0, 0, 0.7)
+			colour = Color(0.8, 0.6, 0.6, 0.7)
 			draw_rect(rect, colour)
 	
 	var ships = get_tree().get_nodes_in_group("ships")
 	for ship in ships:
 		var pos = ship.get_pos()
 		var dist = playerPos.distance_to(pos)
-		if dist < TRACKING_FULL_WIDTH2:
-			var x = (pos.x - playerPos.x) * TRACKING_RATIO + TRACKING_WIDTH / 2
-			var y = (pos.y - playerPos.y) * TRACKING_RATIO + TRACKING_HEIGHT / 2
+		if dist < trackingRange2:
+			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
+			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
 			rect = Rect2(x - 1, y - 1, 3, 3)
-			colour = Color(255, 0, 0, 0.7)
+			colour = Color(1.0, 0, 0, 0.7)
 			draw_rect(rect, colour)
 		

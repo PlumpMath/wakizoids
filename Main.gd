@@ -25,8 +25,9 @@ func createRocks():
 	createRock("res://rock6.tscn", 16000, 0)
 	
 func createShips():
+	createAlienShip()
 	for i in range(4):
-		createBoxShip("res://boxship.tscn")
+		createShip("res://boxship.tscn")
 
 func createRock(name, x, y):
 	var rock = load(name)
@@ -35,10 +36,13 @@ func createRock(name, x, y):
 	node.add_to_group("rocks")
 	add_child(node)
 	
-func createBoxShip(name):
+func createAlienShip():
+	createShip("res://alienship.tscn")
+	
+func createShip(name):
 	var ship = load(name)
 	var node = ship.instance()
-	node.set_pos(Vector2(randi() * 65536 - 32768, randi() * 65536 - 32768))
+	node.set_pos(Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768))
 	node.add_to_group("ships")
 	add_child(node)
 	
