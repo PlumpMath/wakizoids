@@ -32,7 +32,7 @@ func _draw():
 			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
 			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
 			rect = Rect2(x - 1, y - 1, 3, 3)
-			colour = Color(0.8, 0.6, 0.6, 0.7)
+			colour = Color(0.5, 0.5, 1.0, 0.7)
 			draw_rect(rect, colour)
 	
 	var ships = get_tree().get_nodes_in_group("ships")
