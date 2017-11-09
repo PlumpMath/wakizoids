@@ -6,12 +6,12 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -80, 16, 48, -16, 112, 48, 0, 128, -112, 96 )
+points = Vector2Array( 39.637, 66.095, 73.637, 163.095, -58.363, 154.095, -144.363, 42.095, -82.363, -43.905 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -112, -64, 0, -128, 48, -16, -80, 16 )
+points = Vector2Array( 39.637, 66.095, -82.363, -43.905, -70.363, -161.905, 96.637, -117.905, 145.637, -3.905 )
 
 [node name="RigidBody2D" type="RigidBody2D"]
 
@@ -48,7 +48,7 @@ texture = ExtResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 build_mode = 0
-polygon = Vector2Array( 0, -128, 48, -16, 112, 48, 0, 128, -112, 96, -80, 16, -112, -64 )
+polygon = Vector2Array( 39.637, 66.095, 145.637, -3.905, 96.637, -117.905, -70.363, -161.905, -82.363, -43.905, -144.363, 42.095, -58.363, 154.095, 73.637, 163.095 )
 shape_range = Vector2( 0, 1 )
 trigger = false
 __meta__ = {
