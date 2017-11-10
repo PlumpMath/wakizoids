@@ -6,6 +6,7 @@ const BULLET_ACCELERATION = 400
 
 var size
 var lastFired = 0
+var score = 0
 
 onready var firingPosition = get_node("firingPosition")
 onready var engine = get_node("engineParticles")
@@ -40,3 +41,10 @@ func createFiring():
 		bullet.set_pos(pos)
 		bullet.apply_impulse(Vector2(), Vector2(0, -BULLET_ACCELERATION).rotated(get_rot()))
 		get_parent().add_child(bullet)
+
+func addScore(delta):
+	score += delta
+
+func getScore():
+	return score
+
