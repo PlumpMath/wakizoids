@@ -12,6 +12,7 @@ func _ready():
 	add_child(player)
 	createRocks()
 	createShips()
+	add_child(global.getExplosion())
 	set_fixed_process(true)
 
 func createRocks():

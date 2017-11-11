@@ -1,12 +1,21 @@
 extends Node
 
+var explosion
 var PlayerShip = null
 
 func _ready():
-	pass
+	var _explosion = load("res://explosion.tscn")
+	explosion = _explosion.instance()
 	
 func getPlayerShip():
 	return PlayerShip
+	
+func getExplosion():
+	return explosion
+	
+func fireExplosion(pos):
+	explosion.set_pos(pos)
+	explosion.set_emitting(true)
 	
 func setShipType(type):
 	if (type == 1):
