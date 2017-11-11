@@ -43,6 +43,16 @@ func createSubRocks():
 		createSubRock("res://rock4a.tscn", pos, -100, -100)
 		createSubRock("res://rock4b.tscn", pos, 100, -100)
 		createSubRock("res://rock4c.tscn", pos, 100, 100)
+		
+	elif (subRocks == 5):
+		createSubRock("res://rock5a.tscn", pos, -100, -100)
+		createSubRock("res://rock5b.tscn", pos, 100, -100)
+		createSubRock("res://rock5c.tscn", pos, 100, 100)
+		
+	elif (subRocks == 6):
+		createSubRock("res://rock6a.tscn", pos, -100, -100)
+		createSubRock("res://rock6b.tscn", pos, 100, -100)
+		createSubRock("res://rock6c.tscn", pos, 100, 100)
 
 func createSubRock(res, pos, x, y):
 	var _rock = load(res)

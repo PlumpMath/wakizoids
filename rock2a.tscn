@@ -69,11 +69,8 @@ build_mode = 0
 polygon = Vector2Array( -83.363, -84.905, 86.637, -38.905, 98.637, -5.905, 42.637, 28.095, 15.637, 49.095, -3.36298, 82.095, -50.363, 66.095, -71.363, 49.095, -97.363, 35.095 )
 shape_range = Vector2( 0, 3 )
 trigger = false
-script/script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-score = 50
-subRocks = -1
 
 

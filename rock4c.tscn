@@ -61,8 +61,5 @@ build_mode = 0
 polygon = Vector2Array( 130.637, -95.905, 80.637, 49.095, -20.363, 96.095, -129.363, 38.095, -72.363, 18.095, -8.36298, -20.905, 56.637, -60.905 )
 shape_range = Vector2( 0, 2 )
 trigger = false
-script/script = ExtResource( 1 )
-score = 50
-subRocks = -1
 
 

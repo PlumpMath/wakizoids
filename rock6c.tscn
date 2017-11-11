@@ -1,27 +1,19 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://rock.gd" type="Script" id=1]
-[ext_resource path="res://rock3c.png" type="Texture" id=2]
+[ext_resource path="res://rock6c.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -66.363, 97.095, -39.363, 124.095, -25.363, 161.095, -185.363, 221.095, -303.363, 120.095, -219.363, 58.095, -144.363, 70.095 )
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -219.363, 58.095, -184.363, 24.095, -144.363, 70.095 )
+points = Vector2Array( 36.5283, -147.31, 112.528, -13.3098, 51.5283, 142.69, -107.472, 108.69, -65.4717, -35.3098 )
 
 [node name="RigidBody2D" type="RigidBody2D"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 166, -121 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 166, -121 )
-shapes/1/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
@@ -49,10 +41,9 @@ texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
-transform/pos = Vector2( 166, -121 )
 build_mode = 0
-polygon = Vector2Array( -184.363, 24.095, -144.363, 70.095, -66.363, 97.095, -39.363, 124.095, -25.363, 161.095, -185.363, 221.095, -303.363, 120.095, -219.363, 58.095 )
-shape_range = Vector2( 0, 1 )
+polygon = Vector2Array( 36.5283, -147.31, 112.528, -13.3098, 51.5283, 142.69, -107.472, 108.69, -65.4717, -35.3098 )
+shape_range = Vector2( 0, 0 )
 trigger = false
 
 
