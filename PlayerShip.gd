@@ -7,6 +7,7 @@ const BULLET_ACCELERATION = 400
 var size
 var lastFired = 0
 var score = 0
+var shields = 0
 
 onready var firingPosition = get_node("firingPosition")
 onready var engine = get_node("engineParticles")
@@ -48,3 +49,8 @@ func addScore(delta):
 func getScore():
 	return score
 
+func addShields(delta):
+	shields += delta
+	
+func getShields():
+	return shields
