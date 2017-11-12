@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://welcome.gd" type="Script" id=1]
 [ext_resource path="res://font/SF Atarian System.ttf" type="DynamicFontData" id=2]
@@ -21,6 +21,13 @@ font/font = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=3]
 
 font/size = 36
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 2 )
@@ -88,7 +95,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 473.0
 margin/top = 361.0
-margin/right = 549.0
+margin/right = 569.0
 margin/bottom = 403.0
 custom_fonts/font = SubResource( 3 )
 toggle_mode = false
@@ -96,6 +103,25 @@ enabled_focus_mode = 2
 shortcut = null
 text = "Start"
 flat = false
+
+[node name="CheckButton" type="CheckButton" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 457.0
+margin/top = 441.0
+margin/right = 579.0
+margin/bottom = 473.0
+custom_fonts/font = SubResource( 4 )
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Sound"
+flat = false
+align = 0
 
 [connection signal="pressed" from="Panel/StartButton" to="." method="_onStart"]
 
