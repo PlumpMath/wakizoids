@@ -2,6 +2,7 @@ extends Node2D
 
 onready var global = get_node("/root/global")
 onready var scoreLabel = get_node("HUD/ScoreLabel")
+onready var energyLabel = get_node("HUD/EnergyLabel")
 onready var shieldsLabel = get_node("HUD/ShieldsLabel")
 onready var _powerup = load("res://powerup.tscn")
 
@@ -74,6 +75,7 @@ func createShip(name):
 	
 func setHUDdetails():
 	scoreLabel.set_text("Score: " + str(player.getScore()))
+	energyLabel.set_text("Energy: " + str(player.getEnergy()))
 	shieldsLabel.set_text("Shields: " + str(player.getShields()))
 
 func _fixed_process(delta):
