@@ -2,6 +2,8 @@ extends Node2D
 
 onready var global = get_node("/root/global")
 onready var scoreLabel = get_node("HUD/ScoreLabel")
+onready var shieldsLabel = get_node("HUD/ShieldsLabel")
+onready var _powerup = load("res://powerup.tscn")
 
 var player
 
@@ -12,6 +14,7 @@ func _ready():
 	add_child(player)
 	createRocks()
 	createShips()
+	createPowerups()
 	add_child(global.getExplosion())
 	set_fixed_process(true)
 	
@@ -36,6 +39,17 @@ func createShips():
 	createAlienShip()
 	for i in range(4):
 		createShip("res://boxship.tscn")
+		
+func createPowerups():
+	createPowerup(1)
+	createPowerup(2)
+		
+func createPowerup(type):
+	var powerup = _powerup.instance()
+	powerup.powerupType = type
+	powerup.set_pos(Vector2(randomRange(65536), randomRange(65536)))
+	powerup.add_to_group("powerups")
+	add_child(powerup)
 
 func createRandomRock(name, sub):
 	createRock(name, randomRange(65536), randomRange(65536), sub)
@@ -58,9 +72,10 @@ func createShip(name):
 	node.add_to_group("ships")
 	add_child(node)
 	
-func setHUDScore():
+func setHUDdetails():
 	scoreLabel.set_text("Score: " + str(player.getScore()))
+	shieldsLabel.set_text("Shields: " + str(player.getShields()))
 
 func _fixed_process(delta):
-	setHUDScore()
+	setHUDdetails()
 	
