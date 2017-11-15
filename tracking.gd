@@ -5,7 +5,7 @@ const TRACKING_HEIGHT = 160
 
 var trackingRange = 10000.0
 var trackingRange2 = trackingRange / 2.0
-var trackingRatio = TRACKING_WIDTH / trackingRange
+var trackingRatio = TRACKING_HEIGHT / trackingRange
 
 onready var global = get_node("/root/global")
 

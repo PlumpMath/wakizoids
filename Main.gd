@@ -88,6 +88,6 @@ func enemyShipBehaviour():
 	for alien in aliens:
 		var pos = alien.get_pos()
 		var dist = playerPos.distance_to(pos)
-		if (dist > 300 && dist < 500):
+		if (dist > 400 && dist < 600):
 			var vec = playerPos - pos
 			alien.apply_impulse(Vector2(), vec * 0.004) 
