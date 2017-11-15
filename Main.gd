@@ -80,4 +80,14 @@ func setHUDdetails():
 
 func _fixed_process(delta):
 	setHUDdetails()
+	enemyShipBehaviour()
 	
+func enemyShipBehaviour():
+	var playerPos = player.get_pos()
+	var aliens = get_tree().get_nodes_in_group("ships")
+	for alien in aliens:
+		var pos = alien.get_pos()
+		var dist = playerPos.distance_to(pos)
+		if (dist > 300 && dist < 500):
+			var vec = playerPos - pos
+			alien.apply_impulse(Vector2(), vec * 0.004) 
