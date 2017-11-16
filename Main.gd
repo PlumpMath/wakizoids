@@ -39,7 +39,7 @@ func createRocks():
 	
 func createShips():
 	createAlienShip()
-	for i in range(4):
+	for i in range(16):
 		createShip("res://boxship.tscn")
 		
 func createPowerups():
