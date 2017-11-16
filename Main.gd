@@ -16,6 +16,7 @@ func _ready():
 	createRocks()
 	createShips()
 	createPowerups()
+	createBlackHole()
 	add_child(global.getExplosion())
 	set_fixed_process(true)
 	
@@ -72,6 +73,13 @@ func createShip(name):
 	node.set_pos(Vector2(randomRange(65536), randomRange(65536)))
 	node.add_to_group("ships")
 	add_child(node)
+	
+func createBlackHole():
+	var _blackHole = load("res://BlackHole.tscn")
+	var blackHole = _blackHole.instance()
+	# blackHole.set_pos(Vector2(100, 100))
+	blackHole.set_pos(Vector2(randomRange(65536), randomRange(65536)))
+	add_child(blackHole)
 	
 func setHUDdetails():
 	scoreLabel.set_text("Score: " + str(player.getScore()))

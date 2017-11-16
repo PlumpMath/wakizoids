@@ -13,6 +13,10 @@ var lastTime = 0
 
 onready var firingPosition = get_node("firingPosition")
 onready var engine = get_node("engineParticles")
+onready var _brokenShip1 = load("res://brokenship1.tscn")
+onready var _brokenShip2 = load("res://brokenship2.tscn")
+onready var _brokenShip3 = load("res://brokenship3.tscn")
+onready var _brokenShip4 = load("res://brokenship4.tscn")
 
 func _ready():
 	size = get_viewport().get_rect().size
@@ -72,7 +76,7 @@ func reduceShields(delta):
 		energy -= delta
 		
 	if (energy < 0):
-		energy = 0
+		destroy()
 
 func addScore(delta):
 	score += delta
@@ -88,3 +92,23 @@ func addShields(delta):
 	
 func getShields():
 	return shields
+	
+func destroy():
+	var pos = get_pos()
+	var broken1 = _brokenShip1.instance()
+	var broken2 = _brokenShip2.instance()
+	var broken3 = _brokenShip3.instance()
+	var broken4 = _brokenShip4.instance()
+	broken1.set_pos(Vector2(pos.x - 100, pos.y - 100))
+	broken2.set_pos(Vector2(pos.x + 100, pos.y - 100))
+	broken3.set_pos(Vector2(pos.x + 100, pos.y + 100))
+	broken4.set_pos(Vector2(pos.x - 100, pos.y + 100))
+	get_parent().add_child(broken1)
+	get_parent().add_child(broken2)
+	get_parent().add_child(broken3)
+	get_parent().add_child(broken4)
+	
+	pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
+	set_pos(pos)
+	energy = 40
+	shields = 0
