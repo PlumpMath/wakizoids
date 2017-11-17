@@ -2,7 +2,7 @@ extends RigidBody2D
 
 const ACCELERATION = 50
 
-export var score = 50
+export var score = 5
 export var subRocks = -1
 
 var main

@@ -4,6 +4,7 @@ onready var global = get_node("/root/global")
 onready var scoreLabel = get_node("HUD/ScoreLabel")
 onready var energyLabel = get_node("HUD/EnergyLabel")
 onready var shieldsLabel = get_node("HUD/ShieldsLabel")
+onready var jumpLabel = get_node("HUD/JumpLabel")
 onready var _powerup = load("res://powerup.tscn")
 
 var player
@@ -38,8 +39,9 @@ func createRocks():
 		createRandomRock("res://rock6.tscn", 6)
 	
 func createShips():
-	createAlienShip()
 	for i in range(16):
+		createAlienShip()
+	for i in range(6):
 		createShip("res://boxship.tscn")
 		
 func createPowerups():
@@ -85,6 +87,7 @@ func setHUDdetails():
 	scoreLabel.set_text("Score: " + str(player.getScore()))
 	energyLabel.set_text("Energy: " + str(player.getEnergy()))
 	shieldsLabel.set_text("Shields: " + str(player.getShields()))
+	jumpLabel.set_text("Jump: " + str(player.getJump()))
 
 func _fixed_process(delta):
 	setHUDdetails()
@@ -99,3 +102,6 @@ func enemyShipBehaviour():
 		if (dist > 400 && dist < 600):
 			var vec = playerPos - pos
 			alien.apply_impulse(Vector2(), vec * 0.004) 
+			alien.look_at(playerPos)
+			alien.fireAtPlayer(vec)
+			

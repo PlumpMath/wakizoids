@@ -3,10 +3,10 @@
 [ext_resource path="res://alienship.gd" type="Script" id=1]
 [ext_resource path="res://resources/alien4.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 80.0
+points = Vector2Array( 16, -80, 48, -16, 48, 32, 32, 64, -32, 64, -48, 32, -48, -16, -32, -48, -16, -80 )
 
 [node name="alienship" type="RigidBody2D"]
 
@@ -38,10 +38,15 @@ score = 75
 
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
-shape = SubResource( 1 )
+build_mode = 0
+polygon = Vector2Array( 16, -80, 48, -16, 48, 32, 32, 64, -32, 64, -48, 32, -48, -16, -32, -48, -16, -80 )
+shape_range = Vector2( 0, 0 )
 trigger = false
-_update_shape_index = 0
+
+[node name="FiringPos" type="Position2D" parent="."]
+
+transform/pos = Vector2( 0, -112 )
 
 

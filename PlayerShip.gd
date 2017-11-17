@@ -10,9 +10,11 @@ var score = 0
 var energy = 100
 var shields = 0
 var lastTime = 0
+var jump = 1
 
 onready var firingPosition = get_node("firingPosition")
 onready var engine = get_node("engineParticles")
+onready var _bullet = load("res://bullet.tscn")
 onready var _brokenShip1 = load("res://brokenship1.tscn")
 onready var _brokenShip2 = load("res://brokenship2.tscn")
 onready var _brokenShip3 = load("res://brokenship3.tscn")
@@ -48,6 +50,12 @@ func _fixed_process(delta):
 	if (Input.is_action_pressed("ui_fire")):
 		createFiring()
 		
+	if (Input.is_action_pressed("ui_jump")):
+		if (jump > 0):
+			var pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
+			set_pos(pos)
+			jump -= 1
+		
 	var bodies = get_colliding_bodies()
 	for body in bodies:
 		if (body.is_in_group("rocks")):
@@ -60,8 +68,7 @@ func createFiring():
 		if (now - lastFired) > 100:
 			lastFired = OS.get_ticks_msec()
 			var pos = firingPosition.get_global_pos()
-			var bulletResource = load("res://bullet.tscn")
-			var bullet = bulletResource.instance()
+			var bullet = _bullet.instance()
 			bullet.set_pos(pos)
 			bullet.apply_impulse(Vector2(), Vector2(0, -BULLET_ACCELERATION).rotated(get_rot()))
 			get_parent().add_child(bullet)
@@ -92,6 +99,9 @@ func addShields(delta):
 	
 func getShields():
 	return shields
+	
+func getJump():
+	return jump
 	
 func destroy():
 	var pos = get_pos()
