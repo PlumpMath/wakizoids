@@ -47,6 +47,6 @@ trigger = false
 
 [node name="FiringPos" type="Position2D" parent="."]
 
-transform/pos = Vector2( 0, -112 )
+transform/pos = Vector2( 0, 96 )
 
 

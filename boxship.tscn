@@ -46,6 +46,6 @@ _update_shape_index = 0
 
 [node name="FiringPos" type="Position2D" parent="."]
 
-transform/pos = Vector2( 0, -96 )
+transform/pos = Vector2( 0, 96 )
 
 

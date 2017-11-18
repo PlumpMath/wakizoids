@@ -28,8 +28,9 @@ func _fixed_process(delta):
 			queue_free()
 			
 		if body.is_in_group("ships"):
-			var score = body.score
-			player.addScore(score)
-			body.destroy()
+			body.hitByBullet()
 			queue_free()
-			
+		
+		if body.is_in_group("player"):
+			player.reduceShields(30)
+			queue_free()

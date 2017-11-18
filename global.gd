@@ -33,3 +33,6 @@ func setShipType(type):
 	elif (type == 5):
 		var ship = load("res://PurplePlayerShip.tscn")
 		PlayerShip = ship.instance()
+
+func gameOver():
+	get_tree().change_scene("res://GameOver.tscn")

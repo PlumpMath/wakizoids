@@ -7,11 +7,13 @@ const BULLET_ACCELERATION = 400
 var size
 var lastFired = 0
 var score = 0
+var lives = 3
 var energy = 100
 var shields = 0
 var lastTime = 0
 var jump = 1
 
+onready var global = get_node("/root/global")
 onready var firingPosition = get_node("firingPosition")
 onready var engine = get_node("engineParticles")
 onready var _bullet = load("res://bullet.tscn")
@@ -66,7 +68,7 @@ func createFiring():
 	if (energy >= 10):
 		var now = OS.get_ticks_msec()
 		if (now - lastFired) > 100:
-			lastFired = OS.get_ticks_msec()
+			lastFired = now
 			var pos = firingPosition.get_global_pos()
 			var bullet = _bullet.instance()
 			bullet.set_pos(pos)
@@ -103,22 +105,29 @@ func getShields():
 func getJump():
 	return jump
 	
-func destroy():
-	var pos = get_pos()
-	var broken1 = _brokenShip1.instance()
-	var broken2 = _brokenShip2.instance()
-	var broken3 = _brokenShip3.instance()
-	var broken4 = _brokenShip4.instance()
-	broken1.set_pos(Vector2(pos.x - 100, pos.y - 100))
-	broken2.set_pos(Vector2(pos.x + 100, pos.y - 100))
-	broken3.set_pos(Vector2(pos.x + 100, pos.y + 100))
-	broken4.set_pos(Vector2(pos.x - 100, pos.y + 100))
-	get_parent().add_child(broken1)
-	get_parent().add_child(broken2)
-	get_parent().add_child(broken3)
-	get_parent().add_child(broken4)
+func getLives():
+	return lives
 	
-	pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
-	set_pos(pos)
-	energy = 40
-	shields = 0
+func destroy():
+	lives -= 1
+	if (lives > 0):
+		var pos = get_pos()
+		var broken1 = _brokenShip1.instance()
+		var broken2 = _brokenShip2.instance()
+		var broken3 = _brokenShip3.instance()
+		var broken4 = _brokenShip4.instance()
+		broken1.set_pos(Vector2(pos.x - 100, pos.y - 100))
+		broken2.set_pos(Vector2(pos.x + 100, pos.y - 100))
+		broken3.set_pos(Vector2(pos.x + 100, pos.y + 100))
+		broken4.set_pos(Vector2(pos.x - 100, pos.y + 100))
+		get_parent().add_child(broken1)
+		get_parent().add_child(broken2)
+		get_parent().add_child(broken3)
+		get_parent().add_child(broken4)
+	
+		pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
+		set_pos(pos)
+		energy = 40
+		shields = 0
+	else:
+		global.gameOver()

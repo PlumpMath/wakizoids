@@ -58,6 +58,6 @@ func createSubRock(res, pos, x, y):
 	var _rock = load(res)
 	var rock = _rock.instance()
 	rock.set_pos(Vector2(pos.x + x, pos.y + y))
-	rock.score = 75
+	rock.score = 10
 	rock.add_to_group("rocks")
 	main.add_child(rock)
