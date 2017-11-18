@@ -1,6 +1,8 @@
 extends RigidBody2D
 
 export var score = 75
+export var rateOfFire = 500
+export var damageByBullet = 30
 
 onready var firingPosition = get_node("FiringPos")
 onready var _bullet = load("res://bullet.tscn")
@@ -14,7 +16,7 @@ func _ready():
 	
 func fireAtPlayer(vector):
 	var now = OS.get_ticks_msec()
-	if (now - lastFired) > 100:
+	if (now - lastFired) > rateOfFire:
 		lastFired = now
 		var bullet = _bullet.instance()
 		bullet.set_pos(firingPosition.get_global_pos())
@@ -22,7 +24,7 @@ func fireAtPlayer(vector):
 		get_parent().add_child(bullet)
 		
 func hitByBullet():
-	shield -= 10
+	shield -= damageByBullet
 	if (shield < 0):
 		var player = global.getPlayerShip()
 		player.addScore(10)

@@ -9,7 +9,7 @@ var lastFired = 0
 var score = 0
 var lives = 3
 var energy = 100
-var shields = 0
+var shields = 100
 var lastTime = 0
 var jump = 1
 
@@ -72,7 +72,13 @@ func createFiring():
 			var pos = firingPosition.get_global_pos()
 			var bullet = _bullet.instance()
 			bullet.set_pos(pos)
-			bullet.apply_impulse(Vector2(), Vector2(0, -BULLET_ACCELERATION).rotated(get_rot()))
+			
+			# If we don't compensate for our speed, we could
+			# catch up with out bullets!
+			var velocity = get_linear_velocity()
+			var acceleration = velocity.length()
+			bullet.apply_impulse(Vector2(), Vector2(0, -BULLET_ACCELERATION - acceleration).rotated(get_rot()))
+			
 			get_parent().add_child(bullet)
 			energy -= 10
 		
