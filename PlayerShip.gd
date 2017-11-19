@@ -70,13 +70,16 @@ func _fixed_process(delta):
 			var powerup = body.powerupType
 			if (powerup == 1):
 				energy += 50
+				global.setPopupText("Energy increased!")
 				if (energy > 100):
 					energy = 100
 			elif (powerup == 2):
 				shields += 50
+				global.setPopupText("Shields increased!")
 				if (shields > 100):
 					shields = 100
 			elif (powerup == 3):
+				global.setPopupText("Jump available!")
 				jump += 1
 			body.destroy()
 
