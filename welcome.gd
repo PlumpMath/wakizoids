@@ -9,6 +9,8 @@ func _ready():
 	# Initialization here
 	pass
 
-
 func _onStart():
 	get_tree().change_scene("res://ChooseShip.tscn")
+
+func _onHelpPressed():
+	get_tree().change_scene("res://HelpScene.tscn")

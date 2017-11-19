@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://welcome.gd" type="Script" id=1]
 [ext_resource path="res://font/SF Atarian System.ttf" type="DynamicFontData" id=2]
@@ -28,6 +28,13 @@ font/font = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=4]
 
 font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+
+font/size = 36
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 2 )
@@ -94,9 +101,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 473.0
-margin/top = 361.0
+margin/top = 297.0
 margin/right = 569.0
-margin/bottom = 403.0
+margin/bottom = 339.0
 custom_fonts/font = SubResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -123,6 +130,25 @@ text = "Sound"
 flat = false
 align = 0
 
+[node name="Button" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 473.0
+margin/top = 361.0
+margin/right = 569.0
+margin/bottom = 403.0
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Help"
+flat = false
+
 [connection signal="pressed" from="Panel/StartButton" to="." method="_onStart"]
+
+[connection signal="pressed" from="Panel/Button" to="." method="_onHelpPressed"]
 
 
