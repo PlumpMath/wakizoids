@@ -1,17 +1,25 @@
 extends Node2D
 
 onready var global = get_node("/root/global")
+onready var popupLabel = get_node("HUD/PopupLabel")
 onready var scoreLabel = get_node("HUD/ScoreLabel")
 onready var energyLabel = get_node("HUD/EnergyLabel")
 onready var shieldsLabel = get_node("HUD/ShieldsLabel")
 onready var jumpLabel = get_node("HUD/JumpLabel")
 onready var livesLabel = get_node("HUD/LivesLabel")
 onready var _powerup = load("res://powerup.tscn")
+onready var _rock1 = load("res://rock1.tscn")
+onready var _rock2 = load("res://rock2.tscn")
+onready var _rock3 = load("res://rock3.tscn")
+onready var _rock4 = load("res://rock4.tscn")
+onready var _rock5 = load("res://rock5.tscn")
+onready var _rock6 = load("res://rock6.tscn")
 
 var player
 
 func _ready():
 	randomize()
+	global.setPopupLabel(popupLabel)
 	player = global.getPlayerShip()
 	player.set_pos(Vector2(512, 300))
 	add_child(player)
@@ -26,18 +34,18 @@ func randomRange(value):
 	return randi() % value - value / 2
 
 func createRocks():
-	createRock("res://rock1.tscn", randomRange(200), randomRange(200), 1)
-	createRock("res://rock2.tscn", randomRange(200), 600 + randomRange(200), 2)
-	createRock("res://rock3.tscn", randomRange(200) + 1000, randomRange(200), 3)
-	createRock("res://rock4.tscn", randomRange(200) + 1000, randomRange(200) + 600, 4)
+	createRock(_rock1, randomRange(200), randomRange(200), 1)
+	createRock(_rock2, randomRange(200), 600 + randomRange(200), 2)
+	createRock(_rock3, randomRange(200) + 1000, randomRange(200), 3)
+	createRock(_rock4, randomRange(200) + 1000, randomRange(200) + 600, 4)
 	
 	for i in range(20):
-		createRandomRock("res://rock1.tscn", 1)
-		createRandomRock("res://rock2.tscn", 2)
-		createRandomRock("res://rock3.tscn", 3)
-		createRandomRock("res://rock4.tscn", 4)
-		createRandomRock("res://rock5.tscn", 5)
-		createRandomRock("res://rock6.tscn", 6)
+		createRandomRock(_rock1, 1)
+		createRandomRock(_rock2, 2)
+		createRandomRock(_rock3, 3)
+		createRandomRock(_rock4, 4)
+		createRandomRock(_rock5, 5)
+		createRandomRock(_rock6, 6)
 	
 func createShips():
 	for i in range(32):
@@ -46,8 +54,12 @@ func createShips():
 		createShip("res://boxship.tscn")
 		
 func createPowerups():
-	createPowerup(1)
-	createPowerup(2)
+	for i in range(4):
+		createPowerup(1)
+	for i in range(4):
+		createPowerup(2)
+	for i in range(4):
+		createPowerup(3)
 		
 func createPowerup(type):
 	var powerup = _powerup.instance()
@@ -56,12 +68,11 @@ func createPowerup(type):
 	powerup.add_to_group("powerups")
 	add_child(powerup)
 
-func createRandomRock(name, sub):
-	createRock(name, randomRange(65536), randomRange(65536), sub)
+func createRandomRock(resource, sub):
+	createRock(resource, randomRange(65536), randomRange(65536), sub)
 	
-func createRock(name, x, y, sub):
-	var rock = load(name)
-	var node = rock.instance()
+func createRock(resource, x, y, sub):
+	var node = resource.instance()
 	node.subRocks = sub
 	node.set_pos(Vector2(x, y))
 	node.add_to_group("rocks")
@@ -107,4 +118,12 @@ func enemyShipBehaviour():
 			alien.apply_impulse(Vector2(), vec * 0.004) 
 			alien.look_at(playerPos)
 			alien.fireAtPlayer(vec)
-			
+		else:
+			var powerups = get_tree().get_nodes_in_group("powerups")
+			for powerup in powerups:
+				var powerupPos = powerup.get_pos()
+				dist = powerupPos.distance_to(pos)
+				if (dist < 500):
+					var vec = powerupPos - pos
+					alien.apply_impulse(Vector2(), vec * 0.008)
+					alien.look_at(powerupPos)

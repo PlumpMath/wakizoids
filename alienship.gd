@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+const ACCELERATION = 10
+
 export var score = 75
 export var rateOfFire = 500
 export var damageByBullet = 30
@@ -12,7 +14,9 @@ var lastFired = 0
 var shield = 100
 
 func _ready():
-	pass
+	var angle = randf() * 360.0
+	apply_impulse(Vector2(), Vector2(0, -ACCELERATION).rotated(angle))
+	set_fixed_process(true)
 	
 func fireAtPlayer(vector):
 	var now = OS.get_ticks_msec()
@@ -33,3 +37,12 @@ func hitByBullet():
 func destroy():
 	global.fireExplosion(get_pos())
 	queue_free()
+
+func _fixed_process(delta):
+	var bodies = get_colliding_bodies()
+	for body in bodies:
+		if (body.is_in_group("rocks")):
+			global.fireExplosion(body.get_pos())
+			body.destroy()
+		elif (body.is_in_group("powerups")):
+			body.destroy()

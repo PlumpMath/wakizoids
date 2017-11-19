@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://starfield.png" type="Texture" id=2]
@@ -7,7 +7,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 
-font/size = 24
+font/size = 20
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 3 )
@@ -47,6 +47,13 @@ font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=7]
+
+font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 3 )
+
 [node name="Main" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -65,6 +72,23 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
+[node name="PopupLabel" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 368.0
+margin/top = 32.0
+margin/right = 736.0
+margin/bottom = 53.0
+custom_fonts/font = SubResource( 1 )
+text = "Popup text goes here!"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="StatusLabel" type="Label" parent="HUD"]
 
 focus/ignore_mouse = true
@@ -75,7 +99,7 @@ margin/left = 496.0
 margin/top = 0.0
 margin/right = 602.0
 margin/bottom = 24.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Status: Green"
 percent_visible = 1.0
 lines_skipped = 0
@@ -91,7 +115,7 @@ margin/left = 688.0
 margin/top = 560.0
 margin/right = 753.0
 margin/bottom = 584.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Score: 0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -107,7 +131,7 @@ margin/left = 160.0
 margin/top = 560.0
 margin/right = 218.0
 margin/bottom = 574.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Energy: 0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -123,7 +147,7 @@ margin/left = 320.0
 margin/top = 560.0
 margin/right = 398.0
 margin/bottom = 584.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Shields: 0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -139,7 +163,7 @@ margin/left = 848.0
 margin/top = 560.0
 margin/right = 909.0
 margin/bottom = 584.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Jump: 0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -162,7 +186,7 @@ margin/left = 48.0
 margin/top = 560.0
 margin/right = 106.0
 margin/bottom = 584.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "Lives: 0"
 percent_visible = 1.0
 lines_skipped = 0

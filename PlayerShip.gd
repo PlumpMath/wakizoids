@@ -44,7 +44,9 @@ func _fixed_process(delta):
 	
 	if (Input.is_action_pressed("ui_thrust")):
 		if (energy >= 10):
-			apply_impulse(Vector2(), Vector2(0, -ACCELERATION).rotated(get_rot()))
+			var velocity = get_linear_velocity()
+			if (velocity.length() < 500):
+				apply_impulse(Vector2(), Vector2(0, -ACCELERATION).rotated(get_rot()))
 			engine.set_emitting(true)
 	else:
 		engine.set_emitting(false)
@@ -62,6 +64,20 @@ func _fixed_process(delta):
 	for body in bodies:
 		if (body.is_in_group("rocks")):
 			reduceShields(30)
+			body.destroy()
+		
+		if (body.is_in_group("powerups")):
+			var powerup = body.powerupType
+			if (powerup == 1):
+				energy += 50
+				if (energy > 100):
+					energy = 100
+			elif (powerup == 2):
+				shields += 50
+				if (shields > 100):
+					shields = 100
+			elif (powerup == 3):
+				jump += 1
 			body.destroy()
 
 func createFiring():
@@ -115,6 +131,7 @@ func getLives():
 	return lives
 	
 func destroy():
+	global.setPopupText("You lost a life!")
 	lives -= 1
 	if (lives > 0):
 		var pos = get_pos()

@@ -2,6 +2,7 @@ extends Node
 
 var explosion
 var PlayerShip = null
+var popupLabel = null
 
 func _ready():
 	var _explosion = load("res://explosion.tscn")
@@ -16,6 +17,12 @@ func getExplosion():
 func fireExplosion(pos):
 	explosion.set_pos(pos)
 	explosion.set_emitting(true)
+	
+func setPopupLabel(label):
+	popupLabel = label
+	
+func setPopupText(text):
+	popupLabel.set_text(text)
 	
 func setShipType(type):
 	if (type == 1):
