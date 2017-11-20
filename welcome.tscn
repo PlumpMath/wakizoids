@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://welcome.gd" type="Script" id=1]
 [ext_resource path="res://font/SF Atarian System.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://resources/underconstruction.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -35,6 +36,20 @@ font/font = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=5]
 
 font/size = 36
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+
+font/size = 36
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+
+font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 2 )
@@ -100,7 +115,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 473.0
+margin/left = 457.0
 margin/top = 297.0
 margin/right = 569.0
 margin/bottom = 339.0
@@ -117,10 +132,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 457.0
-margin/top = 441.0
-margin/right = 579.0
-margin/bottom = 473.0
+margin/left = 441.0
+margin/top = 489.0
+margin/right = 585.0
+margin/bottom = 521.0
 custom_fonts/font = SubResource( 4 )
 toggle_mode = true
 is_pressed = true
@@ -130,13 +145,13 @@ text = "Sound"
 flat = false
 align = 0
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="CreditsButton" type="Button" parent="Panel"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 473.0
+margin/left = 457.0
 margin/top = 361.0
 margin/right = 569.0
 margin/bottom = 403.0
@@ -144,11 +159,56 @@ custom_fonts/font = SubResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+text = "Credits"
+flat = false
+
+[node name="HelpButton" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 457.0
+margin/top = 425.0
+margin/right = 569.0
+margin/bottom = 467.0
+custom_fonts/font = SubResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Help"
 flat = false
 
+[node name="VersionLabel" type="Label" parent="Panel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 873.0
+margin/top = 521.0
+margin/right = 965.0
+margin/bottom = 545.0
+custom_fonts/font = SubResource( 7 )
+text = "Version: 0.0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Sprite" type="Sprite" parent="Panel"]
+
+transform/pos = Vector2( 233, 377 )
+texture = ExtResource( 3 )
+
+[node name="Sprite1" type="Sprite" parent="Panel"]
+
+transform/pos = Vector2( 793, 377 )
+texture = ExtResource( 3 )
+
 [connection signal="pressed" from="Panel/StartButton" to="." method="_onStart"]
 
-[connection signal="pressed" from="Panel/Button" to="." method="_onHelpPressed"]
+[connection signal="pressed" from="Panel/CreditsButton" to="." method="_onCreditsButton"]
+
+[connection signal="pressed" from="Panel/HelpButton" to="." method="_onHelpPressed"]
 
 

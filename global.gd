@@ -8,6 +8,9 @@ func _ready():
 	var _explosion = load("res://explosion.tscn")
 	explosion = _explosion.instance()
 	
+func getVersion():
+	return "0.2"
+	
 func getPlayerShip():
 	return PlayerShip
 	
@@ -22,7 +25,7 @@ func setPopupLabel(label):
 	popupLabel = label
 	
 func setPopupText(text):
-	popupLabel.set_text(text)
+	popupLabel.setText(text)
 	
 func setShipType(type):
 	if (type == 1):
