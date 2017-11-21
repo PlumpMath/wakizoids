@@ -12,6 +12,7 @@ var energy = 100
 var shields = 100
 var lastTime = 0
 var jump = 1
+var testMode = false
 
 onready var global = get_node("/root/global")
 onready var firingPosition = get_node("firingPosition")
@@ -59,6 +60,14 @@ func _fixed_process(delta):
 			var pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
 			set_pos(pos)
 			jump -= 1
+			
+	if (Input.is_action_pressed("ui_test_mode")):
+		global.setPopupText("Entering test mode... score frozen")
+		testMode = true
+		
+	if (testMode):
+		if (Input.is_action_pressed("ui_jump_blackhole")):
+			jumpBlackhole()
 		
 	var bodies = get_colliding_bodies()
 	for body in bodies:
@@ -111,9 +120,16 @@ func reduceShields(delta):
 		
 	if (energy < 0):
 		destroy()
+		
+func jumpBlackhole():
+	var blackholes = get_tree().get_nodes_in_group("blackholes")
+	var firstBlackhole = blackholes[0]
+	var pos = firstBlackhole.get_pos()
+	set_pos(Vector2(pos.x + 400, pos.y + 400))
 
 func addScore(delta):
-	score += delta
+	if (!testMode):
+		score += delta
 
 func getScore():
 	return score

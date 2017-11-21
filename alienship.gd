@@ -45,4 +45,5 @@ func _fixed_process(delta):
 			global.fireExplosion(body.get_pos())
 			body.destroy()
 		elif (body.is_in_group("powerups")):
+			global.setPopupText("Powerup destroyed by alien!")
 			body.destroy()

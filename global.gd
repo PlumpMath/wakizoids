@@ -9,7 +9,7 @@ func _ready():
 	explosion = _explosion.instance()
 	
 func getVersion():
-	return "0.2"
+	return "0.3"
 	
 func getPlayerShip():
 	return PlayerShip
