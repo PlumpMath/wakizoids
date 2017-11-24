@@ -126,16 +126,16 @@ shortcut = null
 text = "Start"
 flat = false
 
-[node name="CheckButton" type="CheckButton" parent="Panel"]
+[node name="EnableSound" type="CheckButton" parent="Panel"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 441.0
-margin/top = 489.0
-margin/right = 585.0
-margin/bottom = 521.0
+margin/left = 443.0
+margin/top = 493.0
+margin/right = 583.0
+margin/bottom = 525.0
 custom_fonts/font = SubResource( 4 )
 toggle_mode = true
 is_pressed = true

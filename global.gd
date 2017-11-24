@@ -8,6 +8,7 @@ var samplePlayer = null
 var engine
 var alarm
 var fire
+var enableSound = true
 var alarmStarted = false
 var fireStarted = false
 var engineStarted = false
@@ -24,17 +25,29 @@ func getVersion():
 func getPlayerShip():
 	return PlayerShip
 
+func setEnableSound(enable):
+	enableSound = enable
+
 func startEngine():
+	if (!enableSound):
+		return
+		
 	if (!engineStarted):
 		engine = samplePlayer.play("engine")
 		engineStarted = true
 	
 func stopEngine():
+	if (!enableSound):
+		return
+		
 	if (engineStarted):
 		samplePlayer.stop(engine)
 		engineStarted = false
 		
 func soundAlarm():
+	if (!enableSound):
+		return
+		
 	if (!alarmStarted):
 		alarm = samplePlayer.play("alarm")
 		alarmStarted = true
@@ -43,6 +56,9 @@ func soundAlarm():
 			alarm = samplePlayer.play("alarm")
 			
 func soundFire():
+	if (!enableSound):
+		return
+		
 	if (!fireStarted):
 		fire = samplePlayer.play("fire")
 		fireStarted = true
@@ -51,9 +67,15 @@ func soundFire():
 			fire = samplePlayer.play("fire")
 			
 func soundPickup():
+	if (!enableSound):
+		return
+		
 	samplePlayer.play("pickup")
 	
 func soundExplosion():
+	if (!enableSound):
+		return
+		
 	samplePlayer.play("explosion")
 	
 func getExplosion():
