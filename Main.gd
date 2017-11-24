@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var global = get_node("/root/global")
+onready var statusLabel = get_node("HUD/StatusLabel")
 onready var popupLabel = get_node("HUD/PopupLabel")
 onready var scoreLabel = get_node("HUD/ScoreLabel")
 onready var energyLabel = get_node("HUD/EnergyLabel")
@@ -16,6 +17,7 @@ onready var _rock5 = load("res://rock5.tscn")
 onready var _rock6 = load("res://rock6.tscn")
 
 var player
+var status = 0
 
 func _ready():
 	randomize()
@@ -54,11 +56,11 @@ func createShips():
 		createShip("res://boxship.tscn")
 		
 func createPowerups():
-	for i in range(4):
+	for i in range(8):
 		createPowerup(1)
-	for i in range(4):
+	for i in range(8):
 		createPowerup(2)
-	for i in range(4):
+	for i in range(8):
 		createPowerup(3)
 		
 func createPowerup(type):
@@ -96,6 +98,11 @@ func createBlackHole():
 	add_child(blackHole)
 	
 func setHUDdetails():
+	if (status == 0):
+		statusLabel.set_text("Status: Green")
+	elif (status == 1):
+		statusLabel.set_text("Status: Red")
+		
 	scoreLabel.set_text("Score: " + str(player.getScore()))
 	energyLabel.set_text("Energy: " + str(player.getEnergy()))
 	shieldsLabel.set_text("Shields: " + str(player.getShields()))
@@ -108,6 +115,10 @@ func _fixed_process(delta):
 
 # THE ALIENS AI
 func enemyShipBehaviour():
+	status = 0
+	if (player.destroyed):
+		return
+		
 	var playerPos = player.get_pos()
 	var aliens = get_tree().get_nodes_in_group("ships")
 	for alien in aliens:
@@ -118,6 +129,7 @@ func enemyShipBehaviour():
 			alien.apply_impulse(Vector2(), vec * 0.004) 
 			alien.look_at(playerPos)
 			alien.fireAtPlayer(vec)
+			status = 1
 		else:
 			var powerups = get_tree().get_nodes_in_group("powerups")
 			for powerup in powerups:

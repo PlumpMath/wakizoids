@@ -4,6 +4,8 @@ var explosion
 var PlayerShip = null
 var popupLabel = null
 
+onready var _gameOver = load("res://GameOver.tscn")
+
 func _ready():
 	var _explosion = load("res://explosion.tscn")
 	explosion = _explosion.instance()
@@ -43,6 +45,11 @@ func setShipType(type):
 	elif (type == 5):
 		var ship = load("res://PurplePlayerShip.tscn")
 		PlayerShip = ship.instance()
+		
+func tryAgain():
+	PlayerShip.tryAgain()
 
 func gameOver():
-	get_tree().change_scene("res://GameOver.tscn")
+	var root = get_node("/root/Main/HUD")
+	var gameOver = _gameOver.instance()
+	root.add_child(gameOver)

@@ -13,6 +13,7 @@ var shields = 100
 var lastTime = 0
 var jump = 1
 var testMode = false
+var destroyed = false
 
 onready var global = get_node("/root/global")
 onready var firingPosition = get_node("firingPosition")
@@ -156,7 +157,19 @@ func getJump():
 func getLives():
 	return lives
 	
+func tryAgain():
+	lives = 3
+	score = 0
+	energy = 30
+	shields = 0
+	destroyed = false
+	show()
+	set_pos(Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768))
+	
 func destroy():
+	if (destroyed):
+		return
+		
 	global.setPopupText("You lost a life!")
 	lives -= 1
 	if (lives > 0):
@@ -179,4 +192,6 @@ func destroy():
 		energy = 40
 		shields = 0
 	else:
+		hide()
+		destroyed = true
 		global.gameOver()

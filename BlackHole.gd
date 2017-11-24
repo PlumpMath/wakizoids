@@ -26,6 +26,9 @@ func _fixed_process(delta):
 		if (body.is_in_group("ships")):
 			body.destroy()
 			
+		if (body.is_in_group("powerups")):
+			body.destroy()
+			
 		if body.is_in_group("player"):
 			body.destroy()
 			
@@ -48,6 +51,9 @@ func _fixed_process(delta):
 			ship.apply_impulse(Vector2(), vec * 0.001)
 
 	var player = global.getPlayerShip()
+	if (player.destroyed):
+		return
+		
 	var pos = player.get_pos()
 	var dist = blackholePos.distance_to(pos)
 	if (dist < 800):
