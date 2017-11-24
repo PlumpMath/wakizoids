@@ -3,6 +3,14 @@ extends Node
 var explosion
 var PlayerShip = null
 var popupLabel = null
+var samplePlayer = null
+
+var engine
+var alarm
+var fire
+var alarmStarted = false
+var fireStarted = false
+var engineStarted = false
 
 onready var _gameOver = load("res://GameOver.tscn")
 
@@ -15,6 +23,38 @@ func getVersion():
 	
 func getPlayerShip():
 	return PlayerShip
+
+func startEngine():
+	if (!engineStarted):
+		engine = samplePlayer.play("engine")
+		engineStarted = true
+	
+func stopEngine():
+	if (engineStarted):
+		samplePlayer.stop(engine)
+		engineStarted = false
+		
+func soundAlarm():
+	if (!alarmStarted):
+		alarm = samplePlayer.play("alarm")
+		alarmStarted = true
+	else:
+		if (!samplePlayer.is_voice_active(alarm)):
+			alarm = samplePlayer.play("alarm")
+			
+func soundFire():
+	if (!fireStarted):
+		fire = samplePlayer.play("fire")
+		fireStarted = true
+	else:
+		if (!samplePlayer.is_voice_active(fire)):
+			fire = samplePlayer.play("fire")
+			
+func soundPickup():
+	samplePlayer.play("pickup")
+	
+func soundExplosion():
+	samplePlayer.play("explosion")
 	
 func getExplosion():
 	return explosion
@@ -22,9 +62,13 @@ func getExplosion():
 func fireExplosion(pos):
 	explosion.set_pos(pos)
 	explosion.set_emitting(true)
+	soundExplosion()
 	
 func setPopupLabel(label):
 	popupLabel = label
+	
+func setSamplePlayer(player):
+	samplePlayer = player
 	
 func setPopupText(text):
 	popupLabel.setText(text)

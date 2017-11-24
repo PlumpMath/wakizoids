@@ -8,6 +8,7 @@ onready var energyLabel = get_node("HUD/EnergyLabel")
 onready var shieldsLabel = get_node("HUD/ShieldsLabel")
 onready var jumpLabel = get_node("HUD/JumpLabel")
 onready var livesLabel = get_node("HUD/LivesLabel")
+onready var samplePlayer = get_node("SamplePlayer")
 onready var _powerup = load("res://powerup.tscn")
 onready var _rock1 = load("res://rock1.tscn")
 onready var _rock2 = load("res://rock2.tscn")
@@ -21,6 +22,7 @@ var status = 0
 
 func _ready():
 	randomize()
+	global.setSamplePlayer(samplePlayer)
 	global.setPopupLabel(popupLabel)
 	player = global.getPlayerShip()
 	player.set_pos(Vector2(512, 300))
@@ -101,6 +103,7 @@ func setHUDdetails():
 	if (status == 0):
 		statusLabel.set_text("Status: Green")
 	elif (status == 1):
+		global.soundAlarm()
 		statusLabel.set_text("Status: Red")
 		
 	scoreLabel.set_text("Score: " + str(player.getScore()))

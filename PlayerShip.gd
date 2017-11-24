@@ -49,9 +49,11 @@ func _fixed_process(delta):
 			var velocity = get_linear_velocity()
 			if (velocity.length() < 500):
 				apply_impulse(Vector2(), Vector2(0, -ACCELERATION).rotated(get_rot()))
+			global.startEngine()
 			engine.set_emitting(true)
 	else:
 		engine.set_emitting(false)
+		global.stopEngine()
 		
 	if (Input.is_action_pressed("ui_fire")):
 		createFiring()
@@ -62,13 +64,13 @@ func _fixed_process(delta):
 			set_pos(pos)
 			jump -= 1
 			
-	if (Input.is_action_pressed("ui_test_mode")):
-		global.setPopupText("Entering test mode... score frozen")
-		testMode = true
-		
-	if (testMode):
-		if (Input.is_action_pressed("ui_jump_blackhole")):
-			jumpBlackhole()
+#	if (Input.is_action_pressed("ui_test_mode")):
+#		global.setPopupText("Entering test mode... score frozen")
+#		testMode = true
+#		
+#	if (testMode):
+#		if (Input.is_action_pressed("ui_jump_blackhole")):
+#			jumpBlackhole()
 			
 	var pos = get_pos()
 	if (pos.x < -32000 || pos.x > 32000 || pos.y < -32000 || pos.y > 32000):
@@ -98,6 +100,7 @@ func _fixed_process(delta):
 			elif (powerup == 3):
 				global.setPopupText("Jump available!")
 				jump += 1
+			global.soundPickup()
 			body.destroy()
 
 func createFiring():
@@ -108,6 +111,8 @@ func createFiring():
 			var pos = firingPosition.get_global_pos()
 			var bullet = _bullet.instance()
 			bullet.set_pos(pos)
+			
+			global.soundFire()
 			
 			# If we don't compensate for our speed, we could
 			# catch up with out bullets!
