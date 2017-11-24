@@ -68,6 +68,13 @@ func _fixed_process(delta):
 	if (testMode):
 		if (Input.is_action_pressed("ui_jump_blackhole")):
 			jumpBlackhole()
+			
+	var pos = get_pos()
+	if (pos.x < -32000 || pos.x > 32000 || pos.y < -32000 || pos.y > 32000):
+		global.setPopupText("WARNING! Reaching edge of Universe!!!")
+
+	if (pos.x < -32800 || pos.x > 32800 || pos.y < -32800 || pos.y > 32800):
+		destroy()
 		
 	var bodies = get_colliding_bodies()
 	for body in bodies:
