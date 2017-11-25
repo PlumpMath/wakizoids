@@ -1,13 +1,15 @@
 extends Node2D
 
 onready var label = get_node("Label")
-onready var tween = get_node("Tween")
+onready var timer = get_node("Timer")
 
 func _ready():
-	label.hide()
-	tween.interpolate_property(label, "visibility/opacity", 1.0, 0.0, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT, 3.0)
+	hide()
 	
 func setText(text):
-	label.show()
+	show()
 	label.set_text(text)
-	tween.start()
+	timer.start()
+
+func _onTimerTimeout():
+	hide()
