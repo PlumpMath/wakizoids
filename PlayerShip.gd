@@ -31,12 +31,14 @@ func _ready():
 
 func _fixed_process(delta):
 	var now = OS.get_ticks_msec()
-	if (now - lastTime > 100):
-		energy += 1
-		lastTime = now
 	
-	if (energy > 100):
-		energy = 100
+	if (!destroyed):
+		if (now - lastTime > 100):
+			energy += 1
+			lastTime = now
+	
+		if (energy > 100):
+			energy = 100
 		
 	if (Input.is_action_pressed("ui_spin_left")):
 		rotate(deg2rad(delta * ROTATE_SPEED))
@@ -87,6 +89,7 @@ func _fixed_process(delta):
 		
 		if (body.is_in_group("powerups")):
 			var powerup = body.powerupType
+			
 			if (powerup == 1):
 				energy += 50
 				global.setPopupText("Energy increased!")
@@ -100,6 +103,7 @@ func _fixed_process(delta):
 			elif (powerup == 3):
 				global.setPopupText("Jump available!")
 				jump += 1
+
 			global.soundPickup()
 			body.destroy()
 
