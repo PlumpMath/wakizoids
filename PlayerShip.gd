@@ -14,6 +14,7 @@ var lastTime = 0
 var jump = 1
 var testMode = false
 var destroyed = false
+var locked = false
 
 onready var global = get_node("/root/global")
 onready var firingPosition = get_node("firingPosition")
@@ -32,7 +33,7 @@ func _ready():
 func _fixed_process(delta):
 	var now = OS.get_ticks_msec()
 	
-	if (!destroyed):
+	if (!destroyed && !locked):
 		if (now - lastTime > 100):
 			energy += 1
 			lastTime = now

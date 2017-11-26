@@ -31,13 +31,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Tween" type="Tween" parent="."]
 
-process_mode = 1
-wait_time = 5.0
-one_shot = true
-autostart = false
-
-[connection signal="timeout" from="Timer" to="." method="_onTimerTimeout"]
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 

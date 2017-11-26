@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+onready var global = get_node("/root/global")
+
 var direction
 
 func _ready():
@@ -21,12 +23,15 @@ func _fixed_process(delta):
 	
 	for body in bodies:
 		if (body.is_in_group("rocks")):
+			global.setPopupText("Black hole ate a rock!")
 			body.destroy()
 			
 		if (body.is_in_group("ships")):
+			global.setPopupTet("Black hole ate a ship!")
 			body.destroy()
 			
 		if (body.is_in_group("powerups")):
+			global.setPopupText("Black hole ate a powerup")
 			body.destroy()
 			
 		if body.is_in_group("player"):
