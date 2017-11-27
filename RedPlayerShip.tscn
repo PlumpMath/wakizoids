@@ -100,4 +100,13 @@ params/anim_initial_pos = 0.0
 color/color = Color( 0.648438, 0.0658569, 0.27067, 1 )
 color/color_ramp = SubResource( 2 )
 
+[node name="TweenFader" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="tween_complete" from="TweenFader" to="." method="_on_TweenFaderComplete"]
+
 

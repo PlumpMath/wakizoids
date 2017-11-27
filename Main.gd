@@ -119,7 +119,7 @@ func _fixed_process(delta):
 # THE ALIENS AI
 func enemyShipBehaviour():
 	status = 0
-	if (player.destroyed):
+	if (player.destroyed || player.locked):
 		return
 		
 	var playerPos = player.get_pos()

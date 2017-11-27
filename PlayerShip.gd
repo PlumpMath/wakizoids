@@ -4,6 +4,14 @@ const ROTATE_SPEED = 250
 const ACCELERATION = 5
 const BULLET_ACCELERATION = 400
 
+const FADEINOUT_IDLE = 0
+const FADEINOUT_JUMP = 1
+const FADEINOUT_JUMPED = 2
+const FADEINOUT_DESTROYED = 3
+const FADEINOUT_RESURRECTED = 4
+
+const FADEINOUT_PROPERTY = "visibility/opacity"
+
 var size
 var lastFired = 0
 var score = 0
@@ -12,13 +20,16 @@ var energy = 100
 var shields = 100
 var lastTime = 0
 var jump = 1
+var fadeInOutState = FADEINOUT_IDLE
 var testMode = false
 var destroyed = false
 var locked = false
 
 onready var global = get_node("/root/global")
 onready var firingPosition = get_node("firingPosition")
+onready var tweenFader = get_node("TweenFader")
 onready var engine = get_node("engineParticles")
+onready var sprite = get_node("Sprite")
 onready var _bullet = load("res://bullet.tscn")
 onready var _brokenShip1 = load("res://brokenship1.tscn")
 onready var _brokenShip2 = load("res://brokenship2.tscn")
@@ -62,10 +73,19 @@ func _fixed_process(delta):
 		createFiring()
 		
 	if (Input.is_action_pressed("ui_jump")):
-		if (jump > 0):
-			var pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
-			set_pos(pos)
-			jump -= 1
+		if (jump > 0 && !locked):
+			fadeInOutState = FADEINOUT_JUMP
+			locked = true
+			tweenFader.interpolate_property(sprite, FADEINOUT_PROPERTY, 1.0, 0.0, 3.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
+			tweenFader.start()
+			
+	if (Input.is_action_pressed("ui_volume_on")):
+		global.setPopupText("Sound ON")
+		global.setEnableSound(true)
+		
+	if (Input.is_action_pressed("ui_volume_off")):
+		global.setPopupText("Sound OFF")
+		global.setEnableSound(false)
 			
 #	if (Input.is_action_pressed("ui_test_mode")):
 #		global.setPopupText("Entering test mode... score frozen")
@@ -177,7 +197,7 @@ func tryAgain():
 	set_pos(Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768))
 	
 func destroy():
-	if (destroyed):
+	if (destroyed || locked):
 		return
 		
 	global.setPopupText("You lost a life!")
@@ -196,12 +216,34 @@ func destroy():
 		get_parent().add_child(broken2)
 		get_parent().add_child(broken3)
 		get_parent().add_child(broken4)
-	
-		pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
-		set_pos(pos)
-		energy = 40
-		shields = 0
+
+		locked = true
+		fadeInOutState = FADEINOUT_DESTROYED
+		global.soundExplosion()
+		tweenFader.interpolate_property(sprite, FADEINOUT_PROPERTY, 1.0, 0.0, 3.0, Tween.TRANS_QUAD, Tween.EASE_OUT);
+		tweenFader.start()
 	else:
 		hide()
 		destroyed = true
 		global.gameOver()
+
+func _on_TweenFaderComplete( object, key ):
+	if (fadeInOutState == FADEINOUT_JUMP):
+		var pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
+		set_pos(pos)
+		jump -= 1
+		fadeInOutState = FADEINOUT_JUMPED
+		tweenFader.interpolate_property(sprite, FADEINOUT_PROPERTY, 0.0, 1.0, 1.0, Tween.TRANS_QUAD, Tween.EASE_IN)
+		tweenFader.start()
+	elif (fadeInOutState == FADEINOUT_JUMPED):
+		locked = false
+	elif (fadeInOutState == FADEINOUT_DESTROYED):
+		var pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
+		set_pos(pos)
+		energy = 40
+		shields = 0
+		fadeInOutState = FADEINOUT_RESURRECTED
+		tweenFader.interpolate_property(sprite, FADEINOUT_PROPERTY, 0.0, 1.0, 3.0, Tween.TRANS_QUAD, Tween.EASE_IN)
+		tweenFader.start()
+	elif (fadeInOutState == FADEINOUT_RESURRECTED):
+		locked = false

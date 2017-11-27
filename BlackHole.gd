@@ -27,7 +27,7 @@ func _fixed_process(delta):
 			body.destroy()
 			
 		if (body.is_in_group("ships")):
-			global.setPopupTet("Black hole ate a ship!")
+			global.setPopupText("Black hole ate a ship!")
 			body.destroy()
 			
 		if (body.is_in_group("powerups")):
