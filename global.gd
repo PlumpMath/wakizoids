@@ -78,6 +78,12 @@ func soundExplosion():
 		
 	samplePlayer.play("explosion")
 	
+func soundWarpJump():
+	if (!enableSound):
+		return
+		
+	samplePlayer.play("warpjump")
+	
 func getExplosion():
 	return explosion
 	

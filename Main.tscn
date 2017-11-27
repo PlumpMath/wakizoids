@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://sounds/alarm.wav" type="Sample" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://sounds/explosion.wav" type="Sample" id=4]
 [ext_resource path="res://sounds/fire.wav" type="Sample" id=5]
 [ext_resource path="res://sounds/pickup.wav" type="Sample" id=6]
-[ext_resource path="res://starfield.png" type="Texture" id=7]
-[ext_resource path="res://PopupLabel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://font/SF Atarian System.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://tracking.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sounds/warpjump.wav" type="Sample" id=7]
+[ext_resource path="res://starfield.png" type="Texture" id=8]
+[ext_resource path="res://PopupLabel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://font/SF Atarian System.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://tracking.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -43,48 +44,54 @@ samples/pickup = {
 "priority": 0,
 "sample": ExtResource( 6 )
 }
+samples/warpjump = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
 
 [sub_resource type="DynamicFont" id=2]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 9 )
+font/font = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=3]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 9 )
+font/font = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=4]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 9 )
+font/font = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=5]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 9 )
+font/font = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=6]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 9 )
+font/font = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=7]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 9 )
+font/font = ExtResource( 10 )
 
 [node name="Main" type="Node2D"]
 
@@ -110,7 +117,7 @@ default/chorus_send = 0.0
 [node name="starfield" type="Sprite" parent="."]
 
 transform/pos = Vector2( 496, 304 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 region = true
 region_rect = Rect2( 0, 0, 65536, 65536 )
 __meta__ = {
@@ -124,7 +131,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="PopupLabel" parent="HUD" instance=ExtResource( 8 )]
+[node name="PopupLabel" parent="HUD" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 544, 32 )
 
@@ -208,7 +215,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="tracking" parent="HUD" instance=ExtResource( 10 )]
+[node name="tracking" parent="HUD" instance=ExtResource( 11 )]
 
 margin/left = 448.0
 margin/top = 432.0
