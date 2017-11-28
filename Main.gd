@@ -34,6 +34,11 @@ func _ready():
 	add_child(global.getExplosion())
 	set_fixed_process(true)
 	
+func tryAgain():
+	createRocks()
+	createShips()
+	createPowerups()
+	
 func randomRange(value):
 	return randi() % value - value / 2
 

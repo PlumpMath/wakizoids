@@ -192,9 +192,11 @@ func tryAgain():
 	score = 0
 	energy = 30
 	shields = 0
+	locked = false
 	destroyed = false
 	show()
-	set_pos(Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768))
+	var pos = Vector2(randi() % 65536 - 32768, randi() % 65536 - 32768)
+	set_pos(pos)
 	
 func destroy():
 	if (destroyed || locked):
@@ -233,6 +235,7 @@ func _on_TweenFaderComplete( object, key ):
 		set_pos(pos)
 		jump -= 1
 		fadeInOutState = FADEINOUT_JUMPED
+		global.soundWarpJump()
 		tweenFader.interpolate_property(sprite, FADEINOUT_PROPERTY, 0.0, 1.0, 1.0, Tween.TRANS_QUAD, Tween.EASE_IN)
 		tweenFader.start()
 	elif (fadeInOutState == FADEINOUT_JUMPED):

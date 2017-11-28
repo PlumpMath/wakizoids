@@ -120,6 +120,8 @@ func setShipType(type):
 		
 func tryAgain():
 	PlayerShip.tryAgain()
+	var main = get_node("/root/Main")
+	main.tryAgain()
 
 func gameOver():
 	var root = get_node("/root/Main/HUD")

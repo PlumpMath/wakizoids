@@ -33,6 +33,11 @@ func _ready():
 	richTextLabel.add_text("Licence: http://creativecommons.org/publicdomain/zero/1.0/")
 	richTextLabel.newline()
 	richTextLabel.newline()
+	richTextLabel.add_text("Jump sound by Taira Komori http://taira-komori.jpn.org/freesounden.html")
+	richTextLabel.newline()
+	richTextLabel.add_text("Licence: http://creativecommons.org/licenses/by/3.0/")
+	richTextLabel.newline()
+	richTextLabel.newline()
 	richTextLabel.add_text("Stars and Rocks created in Filter Forge 6.0")
 
 func _onBackButton():
