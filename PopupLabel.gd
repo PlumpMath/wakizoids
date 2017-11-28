@@ -9,5 +9,5 @@ func _ready():
 func setText(text):
 	show()
 	label.set_text(text)
-	tween.interpolate_property(label, "visibility/opacity", 1.0, 0.0, 3.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	tween.interpolate_property(label, "visibility/opacity", 1.0, 0.0, 6.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.start()

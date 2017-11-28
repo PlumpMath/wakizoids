@@ -35,6 +35,10 @@ func _ready():
 	set_fixed_process(true)
 	
 func tryAgain():
+	var rocks = get_tree().get_nodes_in_group("rocks")
+	if (rocks.size() > 30):
+		return
+		
 	createRocks()
 	createShips()
 	createPowerups()

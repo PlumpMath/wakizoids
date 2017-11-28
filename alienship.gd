@@ -31,7 +31,7 @@ func hitByBullet():
 	shield -= damageByBullet
 	if (shield < 0):
 		var player = global.getPlayerShip()
-		player.addScore(10)
+		player.addScore(25)
 		destroy()
 
 func destroy():
