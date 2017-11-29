@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://welcome.gd" type="Script" id=1]
 [ext_resource path="res://font/SF Atarian System.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://resources/underconstruction.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -194,16 +193,6 @@ text = "Version: 0.0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="Sprite" type="Sprite" parent="Panel"]
-
-transform/pos = Vector2( 233, 377 )
-texture = ExtResource( 3 )
-
-[node name="Sprite1" type="Sprite" parent="Panel"]
-
-transform/pos = Vector2( 793, 377 )
-texture = ExtResource( 3 )
 
 [connection signal="pressed" from="Panel/StartButton" to="." method="_onStart"]
 
