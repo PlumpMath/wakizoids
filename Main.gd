@@ -61,9 +61,9 @@ func createRocks():
 		createRandomRock(_rock6, 6)
 	
 func createShips():
-	for i in range(32):
-		createAlienShip()
 	for i in range(16):
+		createAlienShip()
+	for i in range(8):
 		createShip("res://boxship.tscn")
 		
 func createPowerups():

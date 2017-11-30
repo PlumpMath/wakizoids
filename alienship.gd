@@ -33,6 +33,12 @@ func hitByBullet():
 		var player = global.getPlayerShip()
 		player.addScore(25)
 		destroy()
+		var ships = get_tree().get_nodes_in_group("ships")
+		var shipCount = ships.size()
+		if (shipCount == 0):
+			global.gameOver()
+		else:
+			global.setPopupText(str(shipCount) + " ships left to kill!")
 
 func destroy():
 	global.fireExplosion(get_pos())
