@@ -6,6 +6,7 @@ onready var global = get_node("/root/global")
 onready var scoreLabel = get_node("Panel/ScoreLabel")
 onready var scoreList = get_node("Panel/HighScoreList")
 onready var lineEdit = get_node("Panel/LineEdit")
+onready var victorLabel = get_node("Panel/VictorLabel")
 
 var player
 var highScores = {
@@ -19,6 +20,10 @@ var highScores = {
 func _ready():
 	player = global.getPlayerShip()
 	scoreLabel.set_text("Final score: " + str(player.score))
+	var aliens = get_tree().get_nodes_in_group("ships")
+	if (aliens.size() == 0):
+		victorLabel.set_text("You destroyed all the aliens!")
+	
 	readHighScores()
 	displayHighScores()
 	
