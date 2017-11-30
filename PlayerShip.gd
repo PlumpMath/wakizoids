@@ -222,9 +222,11 @@ func destroy():
 		locked = true
 		fadeInOutState = FADEINOUT_DESTROYED
 		global.soundExplosion()
-		tweenFader.interpolate_property(sprite, FADEINOUT_PROPERTY, 1.0, 0.0, 3.0, Tween.TRANS_QUAD, Tween.EASE_OUT);
+		global.fireExplosion(get_pos())
+		tweenFader.interpolate_property(sprite, FADEINOUT_PROPERTY, 1.0, 0.0, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT);
 		tweenFader.start()
 	else:
+		global.soundExplosion()
 		hide()
 		destroyed = true
 		global.gameOver()
