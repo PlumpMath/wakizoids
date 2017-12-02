@@ -86,6 +86,12 @@ func _fixed_process(delta):
 	if (Input.is_action_pressed("ui_volume_off")):
 		global.setPopupText("Sound OFF")
 		global.setEnableSound(false)
+		
+	if (Input.is_action_pressed("ui_short_range_scan")):
+		global.setShortRangeScan()
+		
+	if (Input.is_action_pressed("ui_long_range_scan")):
+		global.setLongRangeScan()
 			
 #	if (Input.is_action_pressed("ui_test_mode")):
 #		global.setPopupText("Entering test mode... score frozen")

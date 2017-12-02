@@ -8,12 +8,27 @@ var trackingRange2 = trackingRange / 2.0
 var trackingRatio = TRACKING_HEIGHT / trackingRange
 
 onready var global = get_node("/root/global")
+onready var scanLabel = get_node("ScanLabel")
 
 func _ready():
+	setShortRangeScan()
 	set_process(true)
+	global.setTracking(self)
 	
 func _process(delta):
 	update()
+	
+func setShortRangeScan():
+	scanLabel.set_text("Short Range Scan")
+	trackingRange = 10000.0
+	trackingRange2 = trackingRange / 2.0
+	trackingRatio = TRACKING_HEIGHT / trackingRange
+	
+func setLongRangeScan():
+	scanLabel.set_text("Long Range Scan")
+	trackingRange = 65536.0
+	trackingRange2 = trackingRange / 2.0
+	trackingRatio = TRACKING_HEIGHT / trackingRange
 	
 func _draw():
 	var player = global.getPlayerShip()

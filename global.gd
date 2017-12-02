@@ -4,6 +4,7 @@ var explosion
 var PlayerShip = null
 var popupLabel = null
 var samplePlayer = null
+var tracking = null
 
 var engine
 var alarm
@@ -20,7 +21,7 @@ func _ready():
 	explosion = _explosion.instance()
 	
 func getVersion():
-	return "1.1"
+	return "1.2"
 	
 func getPlayerShip():
 	return PlayerShip
@@ -83,6 +84,15 @@ func soundWarpJump():
 		return
 		
 	samplePlayer.play("warpjump")
+	
+func setTracking(track):
+	tracking = track
+	
+func setShortRangeScan():
+	tracking.setShortRangeScan()
+	
+func setLongRangeScan():
+	tracking.setLongRangeScan()
 	
 func getExplosion():
 	return explosion
