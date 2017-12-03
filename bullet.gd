@@ -30,6 +30,10 @@ func _fixed_process(delta):
 		if body.is_in_group("ships"):
 			body.hitByBullet()
 			queue_free()
+			
+		if body.is_in_group("dog"):
+			body.hitByBullet()
+			queue_free()
 		
 		if body.is_in_group("player"):
 			player.reduceShields(30)

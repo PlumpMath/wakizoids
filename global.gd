@@ -15,13 +15,14 @@ var fireStarted = false
 var engineStarted = false
 
 onready var _gameOver = load("res://GameOver.tscn")
+onready var _policeShip = load("res://policeship.tscn")
 
 func _ready():
 	var _explosion = load("res://explosion.tscn")
 	explosion = _explosion.instance()
 	
 func getVersion():
-	return "1.2"
+	return "1.3 Xmas Edition"
 	
 func getPlayerShip():
 	return PlayerShip
@@ -127,6 +128,19 @@ func setShipType(type):
 	elif (type == 5):
 		var ship = load("res://PurplePlayerShip.tscn")
 		PlayerShip = ship.instance()
+		
+func setFugitive():
+	var pos = PlayerShip.get_pos()
+	createPoliceShip(pos, -400, -400)
+	createPoliceShip(pos,  400, -400)
+	createPoliceShip(pos,  400,  400)
+	createPoliceShip(pos, -400,  400)
+
+func createPoliceShip(playerPos, x, y):
+	var police = _policeShip.instance()
+	police.set_pos(Vector2(playerPos.x + x, playerPos.y + y))
+	var main = get_node("/root/Main")
+	main.add_child(police)
 		
 func tryAgain():
 	PlayerShip.tryAgain()

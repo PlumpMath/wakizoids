@@ -16,6 +16,7 @@ onready var _rock3 = load("res://rock3.tscn")
 onready var _rock4 = load("res://rock4.tscn")
 onready var _rock5 = load("res://rock5.tscn")
 onready var _rock6 = load("res://rock6.tscn")
+onready var _dog = load("res://spacedog.tscn")
 
 var player
 var status = 0
@@ -28,6 +29,7 @@ func _ready():
 	player.set_pos(Vector2(512, 300))
 	add_child(player)
 	createRocks()
+	createSpaceDog()
 	createShips()
 	createPowerups()
 	createBlackHole()
@@ -40,6 +42,7 @@ func tryAgain():
 		return
 		
 	createRocks()
+	createSpaceDog()
 	createShips()
 	createPowerups()
 	
@@ -59,6 +62,11 @@ func createRocks():
 		createRandomRock(_rock4, 4)
 		createRandomRock(_rock5, 5)
 		createRandomRock(_rock6, 6)
+		
+func createSpaceDog():
+	var doggie = _dog.instance()
+	doggie.set_pos(Vector2(randomRange(65536), randomRange(65536)))
+	add_child(doggie)
 	
 func createShips():
 	for i in range(16):
@@ -114,6 +122,9 @@ func setHUDdetails():
 	elif (status == 1):
 		global.soundAlarm()
 		statusLabel.set_text("Status: Red")
+	elif (status == 2):
+		global.soundAlarm()
+		statusLabel.set_text("Status: Fugitive")
 		
 	scoreLabel.set_text("Score: " + str(player.getScore()))
 	energyLabel.set_text("Energy: " + str(player.getEnergy()))
@@ -132,6 +143,17 @@ func enemyShipBehaviour():
 		return
 		
 	var playerPos = player.get_pos()
+	var policeShips = get_tree().get_nodes_in_group("police")
+	for police in policeShips:
+		var pos = police.get_pos()
+		var dist = playerPos.distance_to(pos)
+		if (dist > 200 && dist < 1200):
+			var vec = playerPos - pos
+			police.apply_impulse(Vector2(), vec * 0.008) 
+			police.look_at(playerPos)
+			police.fireAtPlayer(vec)
+			status = 2
+	
 	var aliens = get_tree().get_nodes_in_group("ships")
 	for alien in aliens:
 		var pos = alien.get_pos()
