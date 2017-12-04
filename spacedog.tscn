@@ -9,7 +9,7 @@ custom_solver_bias = 0.0
 radius = 64.0
 
 [node name="spacedog" type="RigidBody2D" groups=[
-"dog",
+"pet",
 ]]
 
 input/pickable = false

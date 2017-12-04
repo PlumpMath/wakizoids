@@ -7,6 +7,8 @@ var trackingRange = 10000.0
 var trackingRange2 = trackingRange / 2.0
 var trackingRatio = TRACKING_HEIGHT / trackingRange
 
+var filter = 1
+
 onready var global = get_node("/root/global")
 onready var scanLabel = get_node("ScanLabel")
 
@@ -30,8 +32,13 @@ func setLongRangeScan():
 	trackingRange2 = trackingRange / 2.0
 	trackingRatio = TRACKING_HEIGHT / trackingRange
 	
+func setScanFilter(value):
+	filter = value
+	
 func _draw():
 	var player = global.getPlayerShip()
+	
+	var lightGray = Color(0.3, 0.3, 0.3, 0.7)
 	
 	var playerPos = player.get_pos()
 	
@@ -47,7 +54,10 @@ func _draw():
 			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
 			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
 			rect = Rect2(x - 1, y - 1, 3, 3)
-			colour = Color(0.5, 0.5, 1.0, 0.7)
+			if (filter == 1 || filter == 2):
+				colour = Color(0.5, 0.5, 1.0, 0.7)
+			else:
+				colour = lightGray
 			draw_rect(rect, colour)
 	
 	var ships = get_tree().get_nodes_in_group("ships")
@@ -58,7 +68,10 @@ func _draw():
 			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
 			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
 			rect = Rect2(x - 1, y - 1, 3, 3)
-			colour = Color(1.0, 0, 0, 0.7)
+			if (filter == 1 || filter == 3):
+				colour = Color(1.0, 0, 0, 0.7)
+			else:
+				colour = lightGray
 			draw_rect(rect, colour)
 	
 	var powerups = get_tree().get_nodes_in_group("powerups")
@@ -69,10 +82,13 @@ func _draw():
 			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
 			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
 			rect = Rect2(x - 1, y - 1, 3, 3)
-			colour = Color(0.5, 1.0, 0.5, 0.7)
+			if (filter == 1 || filter == 4):
+				colour = Color(0.5, 1.0, 0.5, 0.7)
+			else:
+				colour = lightGray
 			draw_rect(rect, colour)
 	
-	var dogs = get_tree().get_nodes_in_group("dog")
+	var dogs = get_tree().get_nodes_in_group("pet")
 	for dog in dogs:
 		var pos = dog.get_pos()
 		var dist = playerPos.distance_to(pos)
@@ -80,6 +96,9 @@ func _draw():
 			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
 			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
 			rect = Rect2(x - 1, y - 1, 3, 3)
-			colour = Color(1.0, 1.0, 0.0, 0.7)
+			if (filter == 1 || filter == 5):
+				colour = Color(1.0, 1.0, 0.0, 0.7)
+			else:
+				colour = lightGray
 			draw_rect(rect, colour)
 		

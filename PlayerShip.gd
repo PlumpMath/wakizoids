@@ -92,7 +92,22 @@ func _fixed_process(delta):
 		
 	if (Input.is_action_pressed("ui_long_range_scan")):
 		global.setLongRangeScan()
-			
+		
+	if (Input.is_action_pressed("ui_filter_off")):
+		global.setScanFilter(1)
+	
+	if (Input.is_action_pressed("ui_filter_rocks")):
+		global.setScanFilter(2)
+	
+	if (Input.is_action_pressed("ui_filter_ships")):
+		global.setScanFilter(3)
+		
+	if (Input.is_action_pressed("ui_filter_powerups")):
+		global.setScanFilter(4)
+		
+	if (Input.is_action_pressed("ui_filter_pets")):
+		global.setScanFilter(5)
+		
 #	if (Input.is_action_pressed("ui_test_mode")):
 #		global.setPopupText("Entering test mode... score frozen")
 #		testMode = true
@@ -131,6 +146,12 @@ func _fixed_process(delta):
 				global.setPopupText("Jump available!")
 				jump += 1
 
+			global.soundPickup()
+			body.destroy()
+		
+		if (body.is_in_group("pet")):
+			global.setPopupText("You rescued your pet!")
+			score += 500
 			global.soundPickup()
 			body.destroy()
 

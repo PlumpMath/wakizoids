@@ -95,6 +95,9 @@ func setShortRangeScan():
 func setLongRangeScan():
 	tracking.setLongRangeScan()
 	
+func setScanFilter(value):
+	tracking.setScanFilter(value)
+	
 func getExplosion():
 	return explosion
 	

@@ -31,7 +31,7 @@ func _fixed_process(delta):
 			body.hitByBullet()
 			queue_free()
 			
-		if body.is_in_group("dog"):
+		if body.is_in_group("pet"):
 			body.hitByBullet()
 			queue_free()
 		

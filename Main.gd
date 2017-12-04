@@ -147,7 +147,7 @@ func enemyShipBehaviour():
 	for police in policeShips:
 		var pos = police.get_pos()
 		var dist = playerPos.distance_to(pos)
-		if (dist > 200 && dist < 1200):
+		if (dist > 200 && dist < 10000):
 			var vec = playerPos - pos
 			police.apply_impulse(Vector2(), vec * 0.008) 
 			police.look_at(playerPos)
@@ -164,12 +164,25 @@ func enemyShipBehaviour():
 			alien.look_at(playerPos)
 			alien.fireAtPlayer(vec)
 			status = 1
-		else:
-			var powerups = get_tree().get_nodes_in_group("powerups")
-			for powerup in powerups:
-				var powerupPos = powerup.get_pos()
-				dist = powerupPos.distance_to(pos)
-				if (dist < 500):
-					var vec = powerupPos - pos
-					alien.apply_impulse(Vector2(), vec * 0.008)
-					alien.look_at(powerupPos)
+			return
+		
+		var powerups = get_tree().get_nodes_in_group("powerups")
+		for powerup in powerups:
+			var powerupPos = powerup.get_pos()
+			dist = powerupPos.distance_to(pos)
+			if (dist < 500):
+				var vec = powerupPos - pos
+				alien.apply_impulse(Vector2(), vec * 0.008)
+				alien.look_at(powerupPos)
+				return
+				
+		var pets = get_tree().get_nodes_in_group("pet")
+		for pet in pets:
+			var petPos = pet.get_pos()
+			dist = petPos.distance_to(pos)
+			if (dist < 500):
+				var vec = petPos - pos
+				alien.apply_impulse(Vector2(), vec * 0.012)
+				alien.look_at(petPos)
+				return
+			
