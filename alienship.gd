@@ -56,3 +56,6 @@ func _fixed_process(delta):
 		elif (body.is_in_group("pet")):
 			global.setPopupText("Pet captured by alien!")
 			body.destory()
+		elif (body.is_in_group("xmas")):
+			global.setPopupText("You lost your christmas pudding!")
+			body.destory()

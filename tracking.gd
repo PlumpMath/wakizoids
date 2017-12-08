@@ -101,4 +101,17 @@ func _draw():
 			else:
 				colour = lightGray
 			draw_rect(rect, colour)
-		
+	
+	var puddings = get_tree().get_nodes_in_group("xmas")
+	for pudding in puddings:
+		var pos = pudding.get_pos()
+		var dist = playerPos.distance_to(pos)
+		if dist < trackingRange2:
+			var x = (pos.x - playerPos.x) * trackingRatio + TRACKING_WIDTH / 2
+			var y = (pos.y - playerPos.y) * trackingRatio + TRACKING_HEIGHT / 2
+			rect = Rect2(x - 1, y - 1, 3, 3)
+			if (filter == 1 || filter == 5):
+				colour = Color(1.0, 1.0, 0.0, 0.7)
+			else:
+				colour = lightGray
+			draw_rect(rect, colour)

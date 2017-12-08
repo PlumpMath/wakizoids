@@ -9,6 +9,7 @@ onready var shieldsLabel = get_node("HUD/ShieldsLabel")
 onready var jumpLabel = get_node("HUD/JumpLabel")
 onready var livesLabel = get_node("HUD/LivesLabel")
 onready var samplePlayer = get_node("SamplePlayer")
+
 onready var _powerup = load("res://powerup.tscn")
 onready var _rock1 = load("res://rock1.tscn")
 onready var _rock2 = load("res://rock2.tscn")
@@ -17,6 +18,7 @@ onready var _rock4 = load("res://rock4.tscn")
 onready var _rock5 = load("res://rock5.tscn")
 onready var _rock6 = load("res://rock6.tscn")
 onready var _dog = load("res://spacedog.tscn")
+onready var _xmas = load("res://xmas pudding.tscn")
 
 var player
 var status = 0
@@ -30,6 +32,7 @@ func _ready():
 	add_child(player)
 	createRocks()
 	createSpaceDog()
+	createXmasPudding()
 	createShips()
 	createPowerups()
 	createBlackHole()
@@ -67,6 +70,11 @@ func createSpaceDog():
 	var doggie = _dog.instance()
 	doggie.set_pos(Vector2(randomRange(65536), randomRange(65536)))
 	add_child(doggie)
+	
+func createXmasPudding():
+	var xmas = _xmas.instance()
+	xmas.set_pos(Vector2(randomRange(65536), randomRange(65536)))
+	add_child(xmas)
 	
 func createShips():
 	for i in range(16):

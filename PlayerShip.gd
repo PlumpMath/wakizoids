@@ -155,6 +155,12 @@ func _fixed_process(delta):
 			global.soundPickup()
 			body.destroy()
 
+		if (body.is_in_group("xmas")):
+			global.setPopupText("You found your Xmas pudding!")
+			score += 1000
+			global.soundPickup()
+			body.destroy()
+
 func createFiring():
 	if (energy >= 10):
 		var now = OS.get_ticks_msec()
