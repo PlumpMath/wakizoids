@@ -136,7 +136,11 @@ func _fixed_process(delta):
 				energy += 50
 				global.setPopupText("Energy increased!")
 				if (energy > 100):
+					var diff = energy - 100
 					energy = 100
+					shields += diff
+					if (shields > 100):
+						shields = 100
 			elif (powerup == 2):
 				shields += 50
 				global.setPopupText("Shields increased!")
@@ -145,6 +149,9 @@ func _fixed_process(delta):
 			elif (powerup == 3):
 				global.setPopupText("Jump available!")
 				jump += 1
+			elif (powerup == 4):
+				global.setPopupText("Increased life!")
+				lives += 1
 
 			global.soundPickup()
 			body.destroy()

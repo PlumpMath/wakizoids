@@ -18,7 +18,9 @@ animations = [ {
 "speed": 1.5
 } ]
 
-[node name="powerup" type="RigidBody2D"]
+[node name="powerup" type="RigidBody2D" groups=[
+"powerups",
+]]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )

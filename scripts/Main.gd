@@ -89,12 +89,14 @@ func createPowerups():
 		createPowerup(2)
 	for i in range(8):
 		createPowerup(3)
+	for i in range(4):
+		createPowerup(4)
 		
 func createPowerup(type):
 	var powerup = _powerup.instance()
 	powerup.powerupType = type
 	powerup.set_pos(Vector2(randomRange(65536), randomRange(65536)))
-	powerup.add_to_group("powerups")
+	# powerup.add_to_group("powerups")
 	add_child(powerup)
 
 func createRandomRock(resource, sub):
