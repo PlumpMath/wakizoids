@@ -31,8 +31,10 @@ func _ready():
 	player.set_pos(Vector2(512, 300))
 	add_child(player)
 	createRocks()
-	createSpaceDog()
-	createXmasPudding()
+	if (global.enablePet):
+		createSpaceDog()
+	if (global.enablePudding):
+		createXmasPudding()
 	createShips()
 	createPowerups()
 	createBlackHole()
@@ -45,7 +47,8 @@ func tryAgain():
 		return
 		
 	createRocks()
-	createSpaceDog()
+	if (global.enablePet):
+		createSpaceDog()
 	createShips()
 	createPowerups()
 	

@@ -10,6 +10,8 @@ var engine
 var alarm
 var fire
 var enableSound = true
+var enablePet = true
+var enablePudding = true
 var alarmStarted = false
 var fireStarted = false
 var engineStarted = false
@@ -22,13 +24,13 @@ func _ready():
 	explosion = _explosion.instance()
 	
 func getVersion():
-	return "1.4-1 Xmas Edition"
+	return "1.4-2 Xmas Edition"
 	
 func getPlayerShip():
 	return PlayerShip
 
-func setEnableSound(enable):
-	enableSound = enable
+# func setEnableSound(enable):
+#	enableSound = enable
 
 func startEngine():
 	if (!enableSound):
