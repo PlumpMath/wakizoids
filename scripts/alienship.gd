@@ -58,4 +58,4 @@ func _fixed_process(delta):
 			body.destory()
 		elif (body.is_in_group("xmas")):
 			global.setPopupText("You lost your christmas pudding!")
-			body.destory()
+			body.destroy()
