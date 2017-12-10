@@ -11,6 +11,7 @@ var alarm
 var fire
 var enableSound = true
 var enablePet = true
+var petIsCat = false
 var enablePudding = true
 var alarmStarted = false
 var fireStarted = false
@@ -28,9 +29,6 @@ func getVersion():
 	
 func getPlayerShip():
 	return PlayerShip
-
-# func setEnableSound(enable):
-#	enableSound = enable
 
 func startEngine():
 	if (!enableSound):

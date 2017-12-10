@@ -18,6 +18,7 @@ onready var _rock4 = load("res://scenes/rock4.tscn")
 onready var _rock5 = load("res://scenes/rock5.tscn")
 onready var _rock6 = load("res://scenes/rock6.tscn")
 onready var _dog = load("res://scenes/spacedog.tscn")
+onready var _cat = load("res://scenes/spacecat.tscn")
 onready var _xmas = load("res://scenes/xmas pudding.tscn")
 
 var player
@@ -31,8 +32,7 @@ func _ready():
 	player.set_pos(Vector2(512, 300))
 	add_child(player)
 	createRocks()
-	if (global.enablePet):
-		createSpaceDog()
+	createSpacePet()
 	if (global.enablePudding):
 		createXmasPudding()
 	createShips()
@@ -47,8 +47,7 @@ func tryAgain():
 		return
 		
 	createRocks()
-	if (global.enablePet):
-		createSpaceDog()
+	createSpacePet()
 	createShips()
 	createPowerups()
 	
@@ -69,10 +68,22 @@ func createRocks():
 		createRandomRock(_rock5, 5)
 		createRandomRock(_rock6, 6)
 		
+func createSpacePet():
+	if (global.enablePet):
+		if (global.petIsCat):
+			createSpaceCat()
+		else:
+			createSpaceDog()	
+		
 func createSpaceDog():
 	var doggie = _dog.instance()
 	doggie.set_pos(Vector2(randomRange(65536), randomRange(65536)))
 	add_child(doggie)
+	
+func createSpaceCat():
+	var kitty = _cat.instance()
+	kitty.set_pos(Vector2(randomRange(65536), randomRange(65536)))
+	add_child(kitty)
 	
 func createXmasPudding():
 	var xmas = _xmas.instance()

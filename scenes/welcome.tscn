@@ -179,6 +179,24 @@ text = "Pet"
 flat = false
 align = 0
 
+[node name="CatOrDog" type="CheckButton" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 777.0
+margin/top = 377.0
+margin/right = 917.0
+margin/bottom = 409.0
+custom_fonts/font = SubResource( 4 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Cat"
+flat = false
+align = 0
+
 [node name="EnablePudding" type="CheckButton" parent="Panel"]
 
 focus/ignore_mouse = false
