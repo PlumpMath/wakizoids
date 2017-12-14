@@ -91,8 +91,14 @@ func createXmasPudding():
 	add_child(xmas)
 	
 func createShips():
-	for i in range(16):
+	for i in range(4):
 		createAlienShip()
+	for i in range(4):
+		createAlienShip2()
+	for i in range(4):
+		createAlienShip3()
+	for i in range(4):
+		createAlienShip4()
 	for i in range(8):
 		createShip("res://scenes/boxship.tscn")
 		
@@ -125,6 +131,15 @@ func createRock(resource, x, y, sub):
 	
 func createAlienShip():
 	createShip("res://scenes/alienship.tscn")
+	
+func createAlienShip2():
+	createShip("res://scenes/alienship2.tscn")
+	
+func createAlienShip3():
+	createShip("res://scenes/alienship3.tscn")
+	
+func createAlienShip4():
+	createShip("res://scenes/alienship4.tscn")
 	
 func createShip(name):
 	var ship = load(name)
