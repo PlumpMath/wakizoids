@@ -25,7 +25,7 @@ func _ready():
 	explosion = _explosion.instance()
 	
 func getVersion():
-	return "1.4-2 Xmas Edition"
+	return "1.4-3 Xmas Edition"
 	
 func getPlayerShip():
 	return PlayerShip
