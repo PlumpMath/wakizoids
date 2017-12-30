@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const ROTATE_SPEED = 250
+const ROTATE_SPEED = 3
 const ACCELERATION = 5
 const BULLET_ACCELERATION = 400
 
@@ -53,10 +53,11 @@ func _fixed_process(delta):
 			energy = 100
 		
 	if (Input.is_action_pressed("ui_spin_left")):
-		rotate(deg2rad(delta * ROTATE_SPEED))
-		
-	if (Input.is_action_pressed("ui_spin_right")):
-	 	rotate(-deg2rad(delta * ROTATE_SPEED))
+		rotateShip(-1)
+	elif (Input.is_action_pressed("ui_spin_right")):
+	 	rotateShip(1)
+	else:
+		rotateShip(0)
 	
 	if (Input.is_action_pressed("ui_thrust")):
 		if (energy >= 10):
@@ -167,6 +168,9 @@ func _fixed_process(delta):
 			score += 1000
 			global.soundPickup()
 			body.destroy()
+
+func rotateShip(direction):
+	set_angular_velocity(direction * ROTATE_SPEED)
 
 func createFiring():
 	if (energy >= 10):
